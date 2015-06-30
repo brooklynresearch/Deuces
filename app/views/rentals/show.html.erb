@@ -1,9 +1,9 @@
 <%= image_tag "chase.png", class: "splash-logo" %>
 
-<h3 class="locker-num">Locker <%= @rental.locker_id %>
+<h1 class="locker-num">Locker <%= @rental.locker_id %></h3>
 <% if @rental.current %>
-  <h2 class="thanks-message">Thanks!  Your phone is in safe hands, courtesy of Chase.  Have a fun day at the U.S. Open!</h2>
+  <h2 class="thanks-message">Thanks! Your phone is in safe hands, courtesy of Chase.  Have a fun day at the U.S. Open!</h2>
 <% else %>
-  <h2 class="thanks-message">Thanks! A Chase reprsentative will retreive your phone from locker #<%= @rental.locker_id %>. Have a great day!</h2>
+  <h2 class="thanks-message">A Chase reprsentative will retreive your phone from locker #<%= @rental.locker_id %>. Have a great day!</h2>
 <% end %>
 <%= link_to "Complete", root_path, class: "button" %>

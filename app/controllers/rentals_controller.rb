@@ -28,14 +28,14 @@ class RentalsController < ApplicationController
   end
 
   def complete
-    # @rental = Rental.where(rental_params.merge(current: true)).first
-    # if @rental
-    #   @rental.complete!
-    #   redirect_to rental_path(@rental)
-    # else
-    #   flash[:notice] = "Sorry, we couldn't find a rental with that information.  Please try again."
-    #   render 'retreive'
-    # end
+    @rental = Rental.where(rental_params.merge(current: true)).first
+    if @rental
+      @rental.complete
+      redirect_to rental_path(@rental)
+    else
+      flash[:notice] = "Sorry, we couldn't find a current rental with that information.  Please try again."
+      render 'retreive'
+    end
   end
 private
 

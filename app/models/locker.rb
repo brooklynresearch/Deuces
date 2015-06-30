@@ -26,7 +26,7 @@ class Locker < ActiveRecord::Base
   end
 
   def text_status
-    occupied? ? "Occupied" : "Open"
+    occupied? ? "In Use" : "Open"
   end
 
   def occupied?

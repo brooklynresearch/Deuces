@@ -1,9 +1,10 @@
 class Rental < ActiveRecord::Base
   belongs_to :locker
 
+  validates_uniqueness_of :phone_number, scope: :current
   validates_presence_of :last_name, :phone_number, :locker_id
   validate :phone_digits_only
-  validate :locker_unoccupied
+  validate :locker_unoccupied, on: :create
 
   after_create :set_locker_occupied
   after_create :assign_hashed_id
@@ -12,7 +13,7 @@ class Rental < ActiveRecord::Base
     locker.set_occupied
   end
 
-  def complete!
+  def complete
     update_attributes(current: false, end_time: DateTime.now)
     locker.set_unoccupied
   end

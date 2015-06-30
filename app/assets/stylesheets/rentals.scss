@@ -24,24 +24,34 @@ body {
 .locker-num {text-align: center;}
 
 //admin locker index
-.admin-locker{
-  width: 90%; padding: 25px 10px; border: 1px solid black; margin: 10px auto; border-radius: 4px; display: block;
-  .locker-id {display: inline;}
-  .admin-locker-text {display: inline-block;}
-  .admin-locker-links {
-    display: inline; float: right;
-    form{display: inline;}
-    // input[type="submit"]
-    .admin-button{ background-color: black; color: white; border: 1px solid black;
-                   font-size: 14px; padding: 12px 8px; margin-left: 10px; text-decoration: none;}
+#admin-locker-index{
+  width: 90%; padding: 40px 5%;
+
+  .admin-locker{
+    width: 100%; padding: 25px 10px; border: 1px solid black; margin: 10px auto;
+    border-radius: 4px; display: block; background-color: rgba(0,153,0, .5);
+    .locker-title {font-weight: bold; font-size: 18px; line-height: 28px;}
+    .locker-data {display: block; line-height: 22px;}
+    .title {font-weight: bold; width: 130px; display: inline-block;}
+    .admin-locker-text {display: inline-block;}
+    .admin-locker-links {
+      display: inline; float: right;
+      form{display: inline;}
+      // input[type="submit"]
+      .admin-button{ background-color: black; color: white; border: 1px solid black;
+                     font-size: 14px; padding: 12px 8px; margin-left: 10px; text-decoration: none;}
+    }
+    &.occupied{
+      background-color:rgba(255,0,0, .5);
+    }
   }
 }
-
 //admin locker show
 
 #admin-locker-show{
-  padding: 50px 20px;
+  padding: 40px 5%;
   .rental-line{
     border-bottom: 1px solid black;
+    .title{ font-weight: bold; width: 90px; display: inline-block; }
   }
 }
