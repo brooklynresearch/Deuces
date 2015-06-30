@@ -20,7 +20,7 @@ class Rental < ActiveRecord::Base
 
 private
   def phone_digits_only
-    unless phone_number.to_i.to_s == phone_number
+    unless !!(phone_number =~ /^[0-9]+$/)
       errors.add(:phone_number, "must be only digits")
     end
   end
