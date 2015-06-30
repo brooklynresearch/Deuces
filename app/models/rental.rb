@@ -1,13 +1,10 @@
 class Rental < ActiveRecord::Base
   belongs_to :locker
   validates_presence_of :last_name, :pin, :locker_id
+  after_create :set_locker_occupied
 
-  def assign_locker!
-    locker = Locker.all_open.sample
-    if locker
-      update_attribute(:locker_id, locker.id)
-      locker.set_occupied
-    end
+  def set_locker_occupied
+    locker.set_occupied
   end
 
   def complete!
