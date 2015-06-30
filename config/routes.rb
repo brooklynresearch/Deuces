@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'hub'
-      get 'retreive'
+      get 'retrieve'
       put 'complete'
     end
   end
@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :lockers, only: [:index, :show] do
       member do
-        post 'retreive'
+        post 'retrieve'
       end
     end
   end
+  match 'admin' => "admin/lockers#index", via: 'get'
 end

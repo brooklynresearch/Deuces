@@ -1,6 +1,8 @@
 <div id="admin-locker-index">
 
 <h1>All Lockers</h1>
+<h3><%= @occupied_count %> Occupied</h3>
+<h3><%= @open_count %> Open</h3>
 <% @lockers.each do |locker| %>
   <div class="admin-locker <%= 'occupied' if locker.occupied %>">
     <div class="admin-locker-text">
@@ -14,7 +16,7 @@
     </div>
     <div class="admin-locker-links">
       <% if locker.occupied %>
-        <%= button_to "Retreive Phone", retreive_admin_locker_path(locker), class: "admin-button" %>
+        <%= button_to "Retrieve Phone", retrieve_admin_locker_path(locker), class: "admin-button" %>
       <% end %>
       <%= link_to "Rental Summary", admin_locker_path(locker), class: "admin-button" %>
     </div>

@@ -7,7 +7,7 @@ class Admin::LockersController < ApplicationController
   end
 
 
-  def retreive
+  def retrieve
     @locker = Locker.find(params[:id])
     rental = @locker.current_rental
     rental.complete

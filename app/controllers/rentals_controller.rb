@@ -24,7 +24,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
   end
 
-  def retreive
+  def retrieve
   end
 
   def complete
@@ -34,7 +34,7 @@ class RentalsController < ApplicationController
       redirect_to rental_path(@rental)
     else
       flash[:notice] = "Sorry, we couldn't find a current rental with that information.  Please try again."
-      render 'retreive'
+      render 'retrieve'
     end
   end
 private
