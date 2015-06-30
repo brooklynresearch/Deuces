@@ -23,13 +23,14 @@ ActiveRecord::Schema.define(version: 20150624141847) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.boolean  "current",    default: true
+    t.boolean  "current",      default: true
     t.integer  "locker_id"
     t.string   "last_name"
-    t.string   "pin"
+    t.string   "phone_number"
+    t.string   "hashed_id"
     t.datetime "end_time"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

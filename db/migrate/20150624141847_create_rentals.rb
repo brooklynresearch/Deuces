@@ -4,7 +4,8 @@ class CreateRentals < ActiveRecord::Migration
       t.boolean :current, default: true
       t.integer :locker_id
       t.string :last_name
-      t.string :pin
+      t.string :phone_number
+      t.string :hashed_id
       t.datetime :end_time
       t.timestamps null: false
     end
