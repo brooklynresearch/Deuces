@@ -11,12 +11,14 @@
   <% end %>
 
 
-  <h2>Previous Rentals:</h2>
-  <% @locker.previous_rentals.each do |rental| %>
-    <div class="rental-line">
-      <p class="rental-name">Name: <%= rental.last_name %></p>
-      <p class="rental-time-in">Stored: <%= display_time_in(rental) %></p>
-      <p class="rental-time-out">Retreived: <%= display_time_out(rental) %></p>
-    </div>
+  <% if @locker.previous_rentals.any? %>
+    <h2>Previous Rentals:</h2>
+    <% @locker.previous_rentals.each do |rental| %>
+      <div class="rental-line">
+        <p class="rental-name">Name: <%= rental.last_name %></p>
+        <p class="rental-time-in">Stored: <%= display_time_in(rental) %></p>
+        <p class="rental-time-out">Retreived: <%= display_time_out(rental) %></p>
+      </div>
+    <% end %>
   <% end %>
 </div>

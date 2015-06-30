@@ -25,8 +25,9 @@ body {
 
 //admin locker index
 .admin-locker{
-  width: 90%; padding: 15px 10px; border: 1px solid black; margin: 10px auto; border-radius: 4px; display: block;
+  width: 90%; padding: 25px 10px; border: 1px solid black; margin: 10px auto; border-radius: 4px; display: block;
   .locker-id {display: inline;}
+  .admin-locker-text {display: inline-block;}
   .admin-locker-links {
     display: inline; float: right;
     form{display: inline;}
