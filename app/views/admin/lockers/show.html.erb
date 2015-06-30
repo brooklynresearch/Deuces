@@ -1,0 +1,22 @@
+<%= image_tag "chase.png", class: "splash-logo" %>
+
+<div id="admin-locker-show">
+  <h1>Locker: <%= @locker.id %> is currently <%= @locker.text_status %></h1>
+  <% if @current_rental %>
+    <h2>Current Rental:</h2>
+    <div class="rental-line">
+      <p class="rental-name">Name: <%= @current_rental.last_name %></p>
+      <p class="rental-time-in">Stored: <%= display_time_in(@current_rental) %></p>
+    </div>
+  <% end %>
+
+
+  <h2>Previous Rentals:</h2>
+  <% @locker.previous_rentals.each do |rental| %>
+    <div class="rental-line">
+      <p class="rental-name">Name: <%= rental.last_name %></p>
+      <p class="rental-time-in">Stored: <%= display_time_in(rental) %></p>
+      <p class="rental-time-out">Retreived: <%= display_time_out(rental) %></p>
+    </div>
+  <% end %>
+</div>

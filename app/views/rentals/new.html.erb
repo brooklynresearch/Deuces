@@ -1,0 +1,11 @@
+<%= image_tag "chase.png", class: "splash-logo" %>
+
+<% if @rental.errors.any? %>
+  <p class="form-errors">Sorry, we couldn't store your phone: <%= @rental.errors.full_messages.join(". ") %></p>
+<% end %>
+
+<%= form_for @rental do |f| %>
+  <%= f.text_field :last_name, placeholder: "Last Name", class: "button" %>
+  <%= f.text_field :pin, placeholder: "Pin", class: "button" %>
+  <%= f.submit "Store My Phone", class: "button submit" %>
+<% end %>

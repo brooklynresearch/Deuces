@@ -1,0 +1,15 @@
+<h2>Lockers</h2>
+<% @lockers.each do |locker| %>
+  <div class="admin-locker">
+    <div class="admin-locker-text">
+      <span class="locker-id">#<%= locker.id %></span>
+      <%= locker.occupied? ? locker.current_rental.last_name : "Unoccupied" %>
+    </div>
+    <div class="admin-locker-links">
+      <% if locker.occupied %>
+        <%= button_to "Retreive Phone", retreive_admin_locker_path(locker), class: "admin-button" %>
+      <% end %>
+      <%= link_to "View Summary", admin_locker_path(locker), class: "admin-button" %>
+    </div>
+  </div>
+<% end %>

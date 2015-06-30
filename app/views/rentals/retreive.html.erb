@@ -1,0 +1,9 @@
+<%= image_tag "chase.png", class: "splash-logo" %>
+<% if @message %>
+  <p class="form-errors"><%= @message %></p>
+<% end %>
+<%= form_tag(complete_rentals_path, method: :put) do  %>
+  <%= text_field_tag 'rental[last_name]', "", placeholder: "Last Name", class: "button" %>
+  <%= text_field_tag 'rental[pin]', "", placeholder: "Pin", class: "button" %>
+  <%= submit_tag "Retreive", class: "button submit" %>
+<% end %>

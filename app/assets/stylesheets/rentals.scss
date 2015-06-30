@@ -1,0 +1,46 @@
+p,h1,h2,h3,span, a, div {font-family: 'Roboto', sans-serif;}
+
+body {
+  margin: 0;
+}
+.splash-logo {
+  width: 50%; margin: 0 auto; display: block;
+}
+
+.hub-link {color: black; text-decoration: none; width: 80%;
+           padding: 15px 10px; display: block; border: 2px solid black;
+          margin: 20px auto; text-align: center; font-size: 24px;}
+
+.button{
+  font-size: 24px; display: block; width: 80%; border: 1px solid black; margin: 20px auto;
+  text-align: center; padding: 10px 0; background-color: white; text-decoration: none; color: black;
+  &.submit {color: white; background-color: black;}
+}
+
+.thanks-message { text-align: center; width: 80%; margin: 20px auto;}
+
+.form-errors { text-align: center; width: 80%; margin: 20px auto; color: red;}
+
+.locker-num {text-align: center;}
+
+//admin locker index
+.admin-locker{
+  width: 90%; padding: 15px 10px; border: 1px solid black; margin: 10px auto; border-radius: 4px; display: block;
+  .locker-id {display: inline;}
+  .admin-locker-links {
+    display: inline; float: right;
+    form{display: inline;}
+    // input[type="submit"]
+    .admin-button{ background-color: black; color: white; border: 1px solid black;
+                   font-size: 14px; padding: 12px 8px; margin-left: 10px; text-decoration: none;}
+  }
+}
+
+//admin locker show
+
+#admin-locker-show{
+  padding: 50px 20px;
+  .rental-line{
+    border-bottom: 1px solid black;
+  }
+}
