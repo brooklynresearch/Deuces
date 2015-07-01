@@ -1,10 +1,10 @@
 class Rental < ActiveRecord::Base
   belongs_to :locker
 
-  validates_uniqueness_of :phone_number, scope: :current
   validates_presence_of :last_name, :phone_number, :locker_id
-  validate :phone_digits_only
-  validate :locker_unoccupied, on: :create
+  validate :ensure_phone_digits_only
+  validate :ensure_locker_unoccupied, on: :create
+  validate :ensure_phone_not_currently_stored, on: :create
 
   after_create :set_locker_occupied
   after_create :assign_hashed_id
@@ -13,21 +13,27 @@ class Rental < ActiveRecord::Base
     locker.set_occupied
   end
 
-  def complete
+  def complete!
     update_attributes(current: false, end_time: DateTime.now)
     locker.set_unoccupied
   end
 
 private
-  def phone_digits_only
+  def ensure_phone_digits_only
     unless !!(phone_number =~ /^[0-9]+$/)
       errors.add(:phone_number, "must be only digits")
     end
   end
 
-  def locker_unoccupied
-    if self.locker.occupied?
+  def ensure_locker_unoccupied
+    unless self.locker && !self.locker.occupied?
       errors.add(:locker, "All lockers are currently occupied")
+    end
+  end
+
+  def ensure_phone_not_currently_stored
+    if Rental.exists?(phone_number: phone_number, current: true)
+      errors.add(:phone_number, "is currently stored in a locker")
     end
   end
 

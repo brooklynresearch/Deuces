@@ -10,7 +10,7 @@ class Admin::LockersController < ApplicationController
   def retrieve
     @locker = Locker.find(params[:id])
     rental = @locker.current_rental
-    rental.complete
+    rental.complete!
 
     redirect_to rental_path(rental)
   end
