@@ -1,4 +1,9 @@
 <%= image_tag "chase.png", class: "splash-logo" %>
 
-<%= link_to "Store Your Phone", new_rental_path, class: "hub-link" %>
+
 <%= link_to "Retrieve Your Phone", retrieve_rentals_path, class: "hub-link" %>
+<% if @all_lockers_full %>
+  <p class="no-rental">Sorry, All Lockers Are Currently Full</p>
+<% else %>
+  <%= link_to "Store Your Phone", new_rental_path, class: "hub-link" %>
+<% end %>

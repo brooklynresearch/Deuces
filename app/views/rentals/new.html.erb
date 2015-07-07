@@ -4,8 +4,13 @@
   <p class="form-errors"><%= flash[:notice] %></p>
 <% end %>
 
-<%= form_for @rental do |f| %>
-  <%= f.text_field :last_name, placeholder: "Last Name", class: "button" %>
-  <%= f.text_field :phone_number, placeholder: "Phone Number", class: "button" %>
-  <%= f.submit "Store My Phone", class: "button submit" %>
+
+<% if @all_lockers_full %>
+  <p class="no-rental">Sorry, All Lockers Are Currently Full</p>
+<% else %>
+  <%= form_for @rental do |f| %>
+    <%= f.text_field :last_name, placeholder: "Last Name", class: "button" %>
+    <%= f.text_field :phone_number, placeholder: "Phone Number", class: "button" %>
+    <%= f.submit "Store My Phone", class: "button submit" %>
+  <% end %>
 <% end %>

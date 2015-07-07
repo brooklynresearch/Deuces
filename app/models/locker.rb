@@ -17,6 +17,10 @@ class Locker < ActiveRecord::Base
     all_occupied.count
   end
 
+  def self.open_count
+    all_open.count
+  end
+
   def current_rental
     rentals.where(current: true).first
   end

@@ -1,6 +1,7 @@
 class RentalsController < ApplicationController
 
   before_action :select_locker_or_prevent_rental, only: :create
+  before_action :set_all_lockers_full, only: [:hub, :new]
 
   def hub
   end
@@ -50,4 +51,7 @@ private
     end
   end
 
+  def set_all_lockers_full
+    @all_lockers_full = Locker.open_count == 0
+  end
 end

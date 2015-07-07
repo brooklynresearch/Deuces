@@ -44,6 +44,15 @@ class LockerTest < ActiveSupport::TestCase
     assert Locker.occupied_count == 3
   end
 
+  test "Locker#open_count returns the count of all open lockers" do
+    Locker.create(occupied: true)
+    Locker.create(occupied: false)
+    Locker.create(occupied: true)
+    Locker.create(occupied: false)
+    assert Locker.occupied_count == 2
+  end
+
+
   test "locker#current_rental returns the current rental on the locker" do
     locker = Locker.create
     rental_1 = locker.rentals.create(last_name: "G", phone_number: "111")
