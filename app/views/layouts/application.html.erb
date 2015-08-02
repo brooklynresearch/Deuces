@@ -9,7 +9,11 @@
 </head>
 <body>
 
-<%= yield %>
+<%= render partial: "layouts/background" %>
+
+<div id="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

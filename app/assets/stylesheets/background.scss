@@ -1,0 +1,98 @@
+$blue-1: #0079C1;
+$blue-2: #0064A2;
+$blue-3: #00456E;
+$blue-4: #40B4E5;
+$blue-5: #0084CB;
+
+#background{
+  position: fixed; bottom: 0; height: 100%; width: 100%;
+  background-color: $blue-1;
+
+  #background-content {position: absolute; bottom: 0;}
+  .row { height: 9.0909090909vw;}
+  .sq { display: inline-block; width: 9.0909090909vw; height: 9.0909090909vw;}
+
+  #row-1{
+    .sq1  { background-color: $blue-2; }
+    .sq2  { background-color: $blue-3; }
+    .sq3  { background-color: $blue-5; }
+    .sq4  { background-color: $blue-2; }
+    .sq5  { background-color: $blue-5; }
+    .sq6  { background-color: $blue-4; }
+    .sq7  { background-color: $blue-2; }
+    .sq8  { background-color: $blue-1; }
+    .sq9  { background-color: $blue-3; }
+    .sq10 { background-color: $blue-5; }
+    .sq11 { background-color: $blue-2; }
+  }
+
+  #row-2{
+    .sq1  { background-color: $blue-4; }
+    .sq2  { background-color: $blue-2; }
+    .sq3  { background-color: $blue-1; }
+    .sq4  { background-color: $blue-3; }
+    .sq5  { background-color: $blue-2; }
+    .sq6  { background-color: $blue-1; }
+    .sq7  { background-color: $blue-4; }
+    .sq8  { background-color: $blue-3; }
+    .sq9  { background-color: $blue-5; }
+    .sq10 { background-color: $blue-1; }
+    .sq11 { background-color: $blue-3; }
+  }
+
+  #row-3{
+    .sq1  { background-color: $blue-1; }
+    .sq2  { background-color: $blue-5; }
+    .sq3  { background-color: $blue-2; }
+    .sq4  { background-color: $blue-4; }
+    .sq5  { background-color: $blue-3; }
+    .sq6  { background-color: $blue-2; }
+    .sq7  { background-color: $blue-5; }
+    .sq8  { background-color: $blue-3; }
+    .sq9  { background-color: $blue-4; }
+    .sq10 { background-color: $blue-3; }
+    .sq11 { background-color: $blue-1; }
+  }
+
+  #row-4{
+    .sq1  { background-color: $blue-2; }
+    .sq2  { background-color: $blue-3; }
+    .sq3  { background-color: $blue-5; }
+    .sq4  { background-color: $blue-1; }
+    .sq5  { background-color: $blue-3; }
+    .sq6  { background-color: $blue-2; }
+    .sq7  { background-color: $blue-1; }
+    .sq8  { background-color: $blue-2; }
+    .sq9  { background-color: $blue-1; }
+    .sq10 { background-color: $blue-3; }
+    .sq11 { background-color: $blue-5; }
+  }
+
+  #row-5{
+    .sq1  { background-color: $blue-2; }
+    .sq2  { background-color: $blue-3; }
+    .sq3  { background-color: $blue-5; }
+    .sq4  { background-color: $blue-2; }
+    .sq5  { background-color: $blue-5; }
+    .sq6  { background-color: $blue-4; }
+    .sq7  { background-color: $blue-2; }
+    .sq8  { background-color: $blue-1; }
+    .sq9  { background-color: $blue-3; }
+    .sq10 { background-color: $blue-5; }
+    .sq11 { background-color: $blue-2; }
+  }
+
+  #row-6{
+    .sq1  { background-color: $blue-4; }
+    .sq2  { background-color: $blue-2; }
+    .sq3  { background-color: $blue-1; }
+    .sq4  { background-color: $blue-3; }
+    .sq5  { background-color: $blue-2; }
+    .sq6  { background-color: $blue-1; }
+    .sq7  { background-color: $blue-4; }
+    .sq8  { background-color: $blue-3; }
+    .sq9  { background-color: $blue-5; }
+    .sq10 { background-color: $blue-1; }
+    .sq11 { background-color: $blue-3; }
+  }
+}

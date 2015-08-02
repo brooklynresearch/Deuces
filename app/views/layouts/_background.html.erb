@@ -1,0 +1,9 @@
+<div id="background">
+  <div id="background-content">
+    <% 6.times do |i| %>
+      <div class="row" id="row-<%= i+1 %>">
+        <%= render partial: "layouts/background_row" %>
+      </div>
+    <% end %>
+  </div>
+</div>

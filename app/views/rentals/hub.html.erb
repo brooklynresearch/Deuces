@@ -1,9 +1,12 @@
 <%= image_tag "chase.png", class: "splash-logo" %>
 
+<div id="button-container">
+  <% if @all_lockers_full %>
+    <!--  hide button -->
+  <% else %>
+    <%= link_to "DROP OFF", new_rental_path, class: "btn right large" %>
+  <% end %>
 
-<%= link_to "Retrieve Your Phone", retrieve_rentals_path, class: "hub-link" %>
-<% if @all_lockers_full %>
-  <p class="no-rental">Sorry, All Lockers Are Currently Full</p>
-<% else %>
-  <%= link_to "Store Your Phone", new_rental_path, class: "hub-link" %>
-<% end %>
+  <%= link_to "PICK UP", retrieve_rentals_path, class: "btn left large" %>
+
+</div>

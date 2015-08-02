@@ -1,4 +1,3 @@
-<%= image_tag "chase.png", class: "splash-logo" %>
 
 <% if flash[:notice] %>
   <p class="form-errors"><%= flash[:notice] %></p>
@@ -8,9 +7,16 @@
 <% if @all_lockers_full %>
   <p class="no-rental">Sorry, All Lockers Are Currently Full</p>
 <% else %>
-  <%= form_for @rental do |f| %>
+  <%= form_for @rental, html: {id: "new-rental-form"} do |f| %>
     <%= f.text_field :last_name, placeholder: "Last Name", class: "button" %>
     <%= f.text_field :phone_number, placeholder: "Phone Number", class: "button" %>
-    <%= f.submit "Store My Phone", class: "button submit" %>
   <% end %>
 <% end %>
+
+<div id="button-container">
+   <%= link_to "BACK", root_path, class: "btn left small" %>
+
+   <%= link_to "ENTER", "#", class: "btn center large green submit-btn",
+               "data-target": "#new-rental-form" %>
+
+</div>
