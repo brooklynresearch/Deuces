@@ -1,9 +1,22 @@
 <%= image_tag "power_up.png", class: "logo smallest" %>
 
-<h1 class="locker-num">Locker <%= @rental.locker_id %></h3>
-<% if @rental.current %>
-  <h2 class="thanks-message">Thanks! Your phone is in safe hands, courtesy of Chase.  Have a fun day at the U.S. Open!</h2>
-<% else %>
-  <h2 class="thanks-message">A Chase representative will retrieve your phone from locker #<%= @rental.locker_id %>. Have a great day!</h2>
-<% end %>
-<%= link_to "Complete", root_path, class: "button" %>
+
+<div id="inner-container">
+  <% if @rental.current %>
+    <div id="place-device">
+      <p>PLEASE PLACE DEVICE IN<br>LOCKER <%= @rental.locker_id %></p>
+    </div>
+  <% else %>
+    <div id="retreive-device">
+      <p>PLEASE PICK UP DEVICE FROM<br>LOCKER <%= @rental.locker_id %></p>
+    </div>
+  <% end %>
+</div>
+
+<div id="button-container">
+  <% if @rental.current %>
+    <%= link_to "COMPLETE", root_path, class: "btn large center" %>
+  <% else %>
+    <%= link_to "UNLOCK", root_path, class: "btn large center" %>
+  <% end %>
+</div>

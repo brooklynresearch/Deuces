@@ -1,24 +1,28 @@
 <%= image_tag "power_up.png", class: "logo smaller" %>
 
-
 <% if flash[:notice] %>
   <p class="form-errors"><%= flash[:notice] %></p>
 <% end %>
 
+<div id="inner-container">
+  <% if @all_lockers_full %>
+    <div class="all-full">
+      <p>SORRY, ALL LOCKERS ARE CURRENTLY FULL</p>
+    </div>
 
-<% if @all_lockers_full %>
-  <p class="no-rental">Sorry, All Lockers Are Currently Full</p>
-<% else %>
-  <%= form_for @rental, html: {id: "new-rental-form"} do |f| %>
-    <%= f.text_field :last_name, placeholder: "Last Name", class: "button" %>
-    <%= f.text_field :phone_number, placeholder: "Phone Number", class: "button" %>
+  <% else %>
+    <%= form_for @rental, html: {id: "new-rental-form"} do |f| %>
+      <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2" %>
+      <%= f.text_field :phone_number, placeholder: "PHONE NUMBER", class: "text-input line-3" %>
+      <%= f.submit "submit", id: "new-submit-button", class: "hidden-submit" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 <div id="button-container">
-   <%= link_to "BACK", root_path, class: "btn left small" %>
-
-   <%= link_to "ENTER", "#", class: "btn center large green submit-btn",
-               "data-target": "#new-rental-form" %>
+  <%= link_to "BACK", root_path, class: "btn left small" %>
+  <% unless @all_lockers_full %>
+    <label for="new-submit-button" class="btn center large green">ENTER</label>
+  <% end %>
 
 </div>
