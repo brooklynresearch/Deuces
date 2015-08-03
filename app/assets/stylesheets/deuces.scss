@@ -34,12 +34,19 @@ $orange: #DF7D1C;
   bottom: 18.1818181818vw;
 
   .text-input{
-    text-align: center; font-size: 30px;
+    text-align: center; font-size: 30px; text-transform: uppercase;
     width: 45.4545454545vw; height: 4.54545454545vw;
     position: absolute; left:  27.2727272727vw;
+
     &.line-2{ top: 0; }
-    &.line-3{ top: 9.0909090909vw;; }
-    &.line-4{ top: 18.1818181818vw;; }
+    &.line-3{ top: 9.0909090909vw; }
+    &.line-4{ top: 18.1818181818vw; }
+
+
+    &.checkbox-container{
+      input { float: left;}
+      p { margin: 0; font-size: 10px;}
+    }
   }
 
   .hidden-submit { display: none; }
