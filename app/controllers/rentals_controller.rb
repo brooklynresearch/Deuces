@@ -17,7 +17,7 @@ class RentalsController < ApplicationController
       redirect_to rental_path(@rental)
     else
       flash[:notice] = @rental.errors.full_messages.join("; ")
-      render 'new'
+      redirect_to new_rental_path
     end
   end
 
@@ -35,7 +35,7 @@ class RentalsController < ApplicationController
       redirect_to rental_path(@rental)
     else
       flash[:notice] = "Sorry, we couldn't find a current rental with that information.  Please try again."
-      render 'retrieve'
+      redirect_to retrieve_rentals_path
     end
   end
 private
