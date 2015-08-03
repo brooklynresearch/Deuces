@@ -1,4 +1,4 @@
-p,h1,h2,h3,span, a, div {font-family: 'Roboto', sans-serif;}
+p,h1,h2,h3,span, a, div {font-family: "Arial Black", Gadget, sans-serif; color: white;}
 
 body {
   margin: 0;
@@ -14,22 +14,31 @@ body {
   .btn {
     position: absolute; height: 9.0909090909vw; width: 9.0909090909vw;
     background-color: #707B7B; color: white; text-decoration: none;
+    text-align: center; line-height: 9.0909090909vw;
 
     &.left     { left: 9.0909090909vw;}
     &.right    { left: 63.6363636364vw;}
     &.center   { left: 54.5454545455vw;}
 
     &.small    { width: 9.0909090909vw;}
-    &.large    { width: 27.2727272727vw;}
+    &.large    { width: 27.2727272727vw; font-size: 30px;}
 
     &.green    { background-color: green;}
   }
 }
 
 .logo {
-  width: 47%; margin: 10% auto 0 auto; display: block;
+  width: 47%; margin: 9% auto 0 auto; display: block;
   &.smaller { width: 28%; margin-top: 6%;}
   &.smallest { width: 25%; margin-top: 3.5%;}
+}
+
+#compliments{
+  width: 45.4545454545vw; margin: 20px auto 0 auto;
+  p {margin: 0 0 0 60px; font-size: 12px;}
+  .chase-logo{
+    width: 27.2727272727vw; margin: 10px auto 0; display: block;
+  }
 }
 
 .button{
