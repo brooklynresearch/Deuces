@@ -5,6 +5,7 @@ class Rental < ActiveRecord::Base
   validate :ensure_phone_digits_only
   validate :ensure_locker_unoccupied, on: :create
   validate :ensure_phone_not_currently_stored, on: :create
+  validate :ensure_terms, on: :create
 
   after_create :set_locker_occupied
   after_create :assign_hashed_id
@@ -37,6 +38,11 @@ private
     end
   end
 
+  def ensure_terms
+    unless terms
+      errors.add(:terms, "must be approved to store your device")
+    end
+  end
   def assign_hashed_id
     generated_hash = rand(36**8).to_s(36)
     assign_hashed_id if Rental.exists?(hashed_id: generated_hash)

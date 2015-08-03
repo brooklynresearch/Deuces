@@ -14,6 +14,7 @@
     <%= form_for @rental, html: {id: "new-rental-form"} do |f| %>
       <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2" %>
       <%= f.text_field :phone_number, placeholder: "PHONE NUMBER", class: "text-input line-3" %>
+      <%= f.check_box :terms,  class: "text-input line-4"%>
       <%= f.submit "submit", id: "new-submit-button", class: "hidden-submit" %>
     <% end %>
   <% end %>

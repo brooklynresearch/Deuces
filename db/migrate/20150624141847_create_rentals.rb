@@ -6,6 +6,7 @@ class CreateRentals < ActiveRecord::Migration
       t.string :last_name
       t.string :phone_number
       t.string :hashed_id
+      t.boolean :terms
       t.datetime :end_time
       t.timestamps null: false
     end
