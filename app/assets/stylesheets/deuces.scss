@@ -102,9 +102,24 @@ $orange: #DF7D1C;
 .form-errors { text-align: center; width: 80%; margin: 8px auto 0 auto; color: red;}
 
 
+#admin-top{
+  height: 200px; width: 90%; position: fixed; background-color: #0079C1;
+  top: 0; padding: 30px 5% 0 5%;
+
+  .admin-title      { margin: 0 0 20px 0;}
+  .admin-nav-button { position: absolute; top: 30px; right: 5%;}
+}
+#admin-container{
+  margin-top: 200px; width: 90%;  padding: 40px 5% 0 5%;
+}
+
+.admin-button{
+  background-color: #00456E; color: white;
+  font-size: 14px; padding: 12px 8px; margin-left: 10px; text-decoration: none;
+}
+
 //admin locker index
 #admin-locker-index{
-  width: 90%; padding: 40px 5%;
 
   .admin-locker{
     width: 100%; padding: 25px 10px; border: 1px solid black; margin: 10px auto;
@@ -113,13 +128,7 @@ $orange: #DF7D1C;
     .locker-data {display: block; line-height: 22px;}
     .title {font-weight: bold; width: 130px; display: inline-block;}
     .admin-locker-text {display: inline-block;}
-    .admin-locker-links {
-      display: inline; float: right;
-      form{display: inline;}
-      // input[type="submit"]
-      .admin-button{ background-color: black; color: white; border: 1px solid black;
-                     font-size: 14px; padding: 12px 8px; margin-left: 10px; text-decoration: none;}
-    }
+    .admin-locker-links { display: inline; float: right;}
     &.occupied{
       background-color:rgba(255,0,0, .5);
     }
@@ -128,9 +137,9 @@ $orange: #DF7D1C;
 //admin locker show
 
 #admin-locker-show{
-  padding: 40px 5%;
   .rental-line{
     border-bottom: 1px solid black;
     .title{ font-weight: bold; width: 90px; display: inline-block; }
+    &.current {border-bottom: none;}
   }
 }

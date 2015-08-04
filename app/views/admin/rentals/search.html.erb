@@ -1,0 +1,18 @@
+<%= image_tag "power_up.png", class: "logo smaller" %>
+
+<% if flash[:notice] %>
+  <p class="form-errors"><%= flash[:notice] %></p>
+<% end %>
+
+<div id="inner-container">
+  <%= form_tag find_admin_rentals_path do %>
+    <%= text_field_tag "last_name", "", placeholder: "LAST NAME", class: "text-input line-2" %>
+    <%= text_field_tag "phone_number", "", placeholder: "PHONE NUMBER", class: "text-input line-3" %>
+    <%= submit_tag "submit", id: "admin-search-button", class: "hidden-submit" %>
+  <% end %>
+</div>
+
+<div id="button-container">
+  <%= link_to "ADMIN", admin_lockers_path, class: "btn left small" %>
+  <label for="admin-search-button" class="btn center large green">ENTER</label>
+</div>

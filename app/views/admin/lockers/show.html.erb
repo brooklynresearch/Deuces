@@ -1,24 +1,29 @@
 <div id="admin-locker-show">
-  <h1>Locker #<%= @locker.id %> is <%= @locker.text_status %></h1>
-  <% if @current_rental %>
-    <h2>Current Rental:</h2>
-    <div class="rental-line">
-      <p class="rental-data"><span class="title">Name:</span> <%= @current_rental.last_name %></p>
-      <p class="rental-data"><span class="title">Phone:</span> <%= @current_rental.phone_number %></p>
-      <p class="rental-time-in"><span class="title">Stored:</span> <%= display_time_in(@current_rental) %></p>
-    </div>
-  <% end %>
 
-
-  <% if @locker.previous_rentals.any? %>
-    <h2>Previous Rentals:</h2>
-    <% @locker.previous_rentals.each do |rental| %>
-      <div class="rental-line">
-        <p class="rental-name"><span class="title">Name:</span> <%= rental.last_name %></p>
-        <p class="rental-data"><span class="title">Phone:</span> <%= rental.phone_number %></p>
-        <p class="rental-time-in"><span class="title">Stored:</span> <%= display_time_in(rental) %></p>
-        <p class="rental-time-out"><span class="title">Retrieved:</span> <%= display_time_out(rental) %></p>
+  <div id="admin-top">
+    <h1 class="admin-title">Locker #<%= @locker.id %> is <%= @locker.text_status %></h1>
+    <% if @current_rental %>
+      <div class="rental-line current">
+        <p class="rental-data"><span class="title">Name:</span> <%= @current_rental.last_name %></p>
+        <p class="rental-data"><span class="title">Phone:</span> <%= @current_rental.phone_number %></p>
+        <p class="rental-time-in"><span class="title">Stored:</span> <%= display_time_in(@current_rental) %></p>
       </div>
     <% end %>
-  <% end %>
+    <%= link_to "ADMIN HOME", admin_lockers_path, class: "admin-button admin-nav-button" %>
+
+  </div>
+
+  <div id="admin-container">
+    <% if @locker.previous_rentals.any? %>
+      <h2>Previous Rentals:</h2>
+      <% @locker.previous_rentals.each do |rental| %>
+        <div class="rental-line">
+          <p class="rental-name"><span class="title">Name:</span> <%= rental.last_name %></p>
+          <p class="rental-data"><span class="title">Phone:</span> <%= rental.phone_number %></p>
+          <p class="rental-time-in"><span class="title">Stored:</span> <%= display_time_in(rental) %></p>
+          <p class="rental-time-out"><span class="title">Retrieved:</span> <%= display_time_out(rental) %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
