@@ -10,11 +10,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :lockers, only: [:index, :show] do
+    resources :lockers, only: [:index, :show]
+    resources :rentals, only: [:show] do
       member do
         post 'retrieve'
       end
+      collection do
+        get 'search'
+      end
     end
+
   end
   match 'admin' => "admin/lockers#index", via: 'get'
 end

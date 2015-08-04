@@ -1,0 +1,16 @@
+<%= image_tag "power_up.png", class: "logo smaller" %>
+
+<% if flash[:notice] %>
+  <p class="form-errors"><%= flash[:notice] %></p>
+<% end %>
+
+<div id="inner-container">
+  <div id="retreive-device">
+    <p>NAME: <%= @rental.last_name %><br>PHONE: <%= @rental.phone_number %></p>
+  </div>
+</div>
+
+<div id="button-container">
+  <%= link_to "BACK", admin_lockers_path, class: "btn left small" %>
+  <%= button_to "UNLOCK", retrieve_admin_rental_path(@rental), class: "btn center large green" %>
+</div>

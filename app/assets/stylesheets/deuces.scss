@@ -20,7 +20,7 @@ $orange: #DF7D1C;
   .btn {
     position: absolute; height: deuces-units(1); width: deuces-units(1);
     background-color: #707B7B; color: white; text-decoration: none;
-    text-align: center; line-height: deuces-units(1);
+    text-align: center; line-height: deuces-units(1); border: none;
 
     &.left     { left: deuces-units(1);}
     &.right    { left: deuces-units(7);}
@@ -69,7 +69,14 @@ $orange: #DF7D1C;
   }
 
   #retreive-device{
-    width: deuces-units(7); height: deuces-units(3);
+    width: deuces-units(7); height: deuces-units(2);
+    text-align: center; font-size: 26px;
+    margin: 0 auto; background-color: $lime-green;
+    p { padding-top: 52px; display: block; margin: 0;}
+  }
+
+  #admin-rental-show{
+    width: deuces-units(7); height: deuces-units(2);
     text-align: center; font-size: 26px;
     margin: 0 auto; background-color: $lime-green;
     p { padding-top: 52px; display: block; margin: 0;}

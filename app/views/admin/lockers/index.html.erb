@@ -16,7 +16,7 @@
     </div>
     <div class="admin-locker-links">
       <% if locker.occupied %>
-        <%= button_to "Retrieve Phone", retrieve_admin_locker_path(locker), class: "admin-button" %>
+        <%= link_to "Retrieve Phone", admin_rental_path(locker.current_rental), class: "admin-button" %>
       <% end %>
       <%= link_to "Rental Summary", admin_locker_path(locker), class: "admin-button" %>
     </div>
