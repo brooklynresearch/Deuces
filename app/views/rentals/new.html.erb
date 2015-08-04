@@ -13,7 +13,8 @@
   <% else %>
     <%= form_for @rental, html: {id: "new-rental-form"} do |f| %>
       <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2" %>
-      <%= f.text_field :phone_number, placeholder: "PHONE NUMBER", class: "text-input line-3" %>
+      <%= f.text_field :phone_number, placeholder: "PHONE NUMBER", class: "text-input line-3",
+          type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*" %>
       <div class="text-input line-4 checkbox-container">
         <%= f.check_box :terms %>
         <p>IF YOU AGREE BY CHECKING THIS BOX YOUR PERSONAL INFORMATION WILL BE USED SOLELY TO RESERVE YOUR CHARGING STATION LOCKER AND WILL NOT BE STORED AFTER YOUR USE.</p>

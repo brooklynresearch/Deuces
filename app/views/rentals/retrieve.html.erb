@@ -7,7 +7,8 @@
 <div id="inner-container">
   <%= form_tag(complete_rentals_path, method: :put, id: "retrieve-rental-form") do  %>
     <%= text_field_tag 'rental[last_name]', "", placeholder: "Last Name", class: "text-input line-2" %>
-    <%= text_field_tag 'rental[phone_number]', "", placeholder: "Phone Number", class: "text-input line-3" %>
+    <%= text_field_tag 'rental[phone_number]', "", placeholder: "Phone Number", class: "text-input line-3",
+        type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*" %>
     <%= submit_tag "submit", id: "retrieve-submit-button", class: "hidden-submit" %>
   <% end %>
 </div>
