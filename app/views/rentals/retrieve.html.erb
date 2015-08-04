@@ -5,14 +5,14 @@
 <% end %>
 
 <div id="inner-container">
-  <%= form_tag(complete_rentals_path, method: :put, id: "retreive-rental-form") do  %>
+  <%= form_tag(complete_rentals_path, method: :put, id: "retrieve-rental-form") do  %>
     <%= text_field_tag 'rental[last_name]', "", placeholder: "Last Name", class: "text-input line-2" %>
     <%= text_field_tag 'rental[phone_number]', "", placeholder: "Phone Number", class: "text-input line-3" %>
-    <%= submit_tag "submit", id: "retreive-submit-button", class: "hidden-submit" %>
+    <%= submit_tag "submit", id: "retrieve-submit-button", class: "hidden-submit" %>
   <% end %>
 </div>
 
 <div id="button-container">
    <%= link_to "BACK", root_path, class: "btn left small" %>
-   <label for="retreive-submit-button" class="btn center large green submit-btn">RETREIVE</label>
+   <label for="retrieve-submit-button" class="btn center large green submit-btn">retrieve</label>
 </div>
