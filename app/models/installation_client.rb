@@ -3,7 +3,7 @@ class InstallationClient
   def initialize(rental, device_id)
     @rental    = rental
     @locker    = rental.locker
-    @url       = URI('http://localhost:5000/')
+    @url       = URI('http://localhost:5000/messages')
     @device_id = device_id
   end
 
@@ -13,15 +13,25 @@ class InstallationClient
               col: @locker.column,
               device_id: @device_id,
               state: 0 }
-    Net::HTTP.post_form(@url, params)
+
+    req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
+    req.body = params.to_json
+    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      http.request(req)
+    end
   end
 
   def ping_drop_off
     params = {row: @locker.row,
               col: @locker.column,
               device_id: @device_id,
-              state: 1 }
-    Net::HTTP.post_form(@url, params)
+              state: 0 }
+
+    req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
+    req.body = params.to_json
+    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      http.request(req)
+    end
   end
 
 end
