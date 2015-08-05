@@ -9,18 +9,18 @@ class InstallationClient
 
 
   def ping_retrieval
-    params = {'row': @locker.row,
-              'col': @locker.column,
-              'device_id': @device_id,
-              'state': 0 }
+    params = {row: @locker.row,
+              col: @locker.column,
+              device_id: @device_id,
+              state: 0 }
     Net::HTTP.post_form(@url, params)
   end
 
   def ping_drop_off
-    params = {'row': @locker.row,
-              'col': @locker.column,
-              'device_id': @device_id,
-              'state': 1 }
+    params = {row: @locker.row,
+              col: @locker.column,
+              device_id: @device_id,
+              state: 1 }
     Net::HTTP.post_form(@url, params)
   end
 
