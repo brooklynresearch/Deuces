@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  root 'rentals#hub'
-  resources :rentals, only: [:new, :create, :show] do
 
+  root 'rentals#hub', :device_id => "1"
+
+  scope ":device_id" do
+  # namespace '/devices/:device_id' do
+    # scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/, defaults: {locale: "en"} do
+
+  resources :rentals, only: [:new, :create, :show] do
     collection do
       get 'hub'
       get 'retrieve'
@@ -20,7 +25,7 @@ Rails.application.routes.draw do
         post 'find'
       end
     end
-
   end
   match 'admin' => "admin/lockers#index", via: 'get'
+  end
 end
