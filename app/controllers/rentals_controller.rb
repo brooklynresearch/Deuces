@@ -41,7 +41,7 @@ class RentalsController < ApplicationController
 private
 
   def rental_params
-    params.require(:rental).permit(:phone_number, :last_name, :terms, :device_id)
+    params.require(:rental).permit(:phone_number, :last_name, :terms, :creation_device_id)
   end
 
   def select_locker_or_prevent_rental
