@@ -14,6 +14,7 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
     @rental.locker = @selected_locker
     if @rental.save
+      InstallationClient.new(@rental, creation_device_id).ping_drop_off
       redirect_to rental_path(@rental)
     else
       flash[:notice] = @rental.errors.full_messages.join("; ")
@@ -32,6 +33,7 @@ class RentalsController < ApplicationController
     @rental = Rental.where(rental_params.merge(current: true)).first
     if @rental
       @rental.complete!(params[:device_id])
+      InstallationClient.new(@rental, creation_device_id).ping_retrieval
       redirect_to rental_path(@rental)
     else
       flash[:notice] = "Sorry, we couldn't find a current rental with that information.  Please try again."

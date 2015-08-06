@@ -9,7 +9,6 @@ class Rental < ActiveRecord::Base
 
   after_create :set_locker_occupied
   after_create :assign_hashed_id
-  after_create :ping_installation
 
   def set_locker_occupied
     locker.set_occupied
@@ -18,12 +17,8 @@ class Rental < ActiveRecord::Base
   def complete!(device_id)
     update_attributes(current: false, end_time: DateTime.now)
     locker.set_unoccupied
-    InstallationClient.new(self, device_id).ping_retrieval
   end
 
-  def ping_installation
-    InstallationClient.new(self, creation_device_id).ping_drop_off
-  end
 
 private
   def ensure_phone_digits_only

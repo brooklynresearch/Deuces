@@ -7,6 +7,7 @@ class Admin::RentalsController < ApplicationController
   def retrieve
     @rental = Rental.find(params[:id])
     @rental.complete!(params[:device_id])
+    InstallationClient.new(@rental, creation_device_id).ping_retrieval
 
     redirect_to rental_path(@rental)
   end
