@@ -13,18 +13,7 @@ class InstallationClient
               col: @locker.column,
               device_id: @device_id,
               state: 0 }
-
-    begin
-      req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
-      req.body = params.to_json
-      res = Net::HTTP.start(@url.hostname, @url.port) do |http|
-        http.request(req)
-      end
-    rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Errno::ECONNREFUSED,
-       Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-       puts 'issue'
-
-    end
+    make_request(params)
   end
 
   def ping_drop_off
@@ -32,19 +21,22 @@ class InstallationClient
               col: @locker.column,
               device_id: @device_id,
               state: 0 }
+    make_request(params)
+  end
 
+private
+
+  def make_request(params)
     begin
       req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
       req.body = params.to_json
       res = Net::HTTP.start(@url.hostname, @url.port) do |http|
         http.request(req)
       end
-
+      res.code == "200"
     rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Errno::ECONNREFUSED,
        Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-       puts 'issue'
-
+       false
     end
   end
-
 end
