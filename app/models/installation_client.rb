@@ -14,9 +14,9 @@ class InstallationClient
               device_id: @device_id,
               state: 0 }
 
-    req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
+    req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
     req.body = params.to_json
-    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+    res = Net::HTTP.start(@url.hostname, @url.port) do |http|
       http.request(req)
     end
   end
@@ -27,9 +27,9 @@ class InstallationClient
               device_id: @device_id,
               state: 0 }
 
-    req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
+    req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
     req.body = params.to_json
-    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+    res = Net::HTTP.start(@url.hostname, @url.port) do |http|
       http.request(req)
     end
   end
