@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20150624141847) do
 
   create_table "lockers", force: :cascade do |t|
     t.boolean  "occupied",   default: false
-    t.string   "row"
-    t.string   "column"
+    t.integer  "row"
+    t.integer  "column"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
