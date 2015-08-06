@@ -1,8 +1,8 @@
-rows =  ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+row_count = 9
+column_count = 50
 
-
-rows.each do |row|
-  10.times do |column|
-    Locker.create(row: row, column: column + 1)
+row_count.times do |r|
+  column_count.times do |c|
+    Locker.create(row: row, column: column)
   end
 end
