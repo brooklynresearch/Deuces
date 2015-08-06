@@ -6,10 +6,15 @@ class Admin::RentalsController < ApplicationController
 
   def retrieve
     @rental = Rental.find(params[:id])
-    @rental.complete!(params[:device_id])
-    InstallationClient.new(@rental, creation_device_id).ping_retrieval
-
-    redirect_to rental_path(@rental)
+    @rental.complete!
+    lrc_response = LockerRoomClient.new(@rental, params).ping_retrieval
+    if lrc_response
+      redirect_to rental_path(@rental)
+    else
+      @rental.reverse_completion!
+      flash[:notice] = "There was an issue connecting with the locker.  Please Try again or ask a representative"
+      redirect_to admin_rental_path(@rental)
+    end
   end
 
   def search

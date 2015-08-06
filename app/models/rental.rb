@@ -14,11 +14,20 @@ class Rental < ActiveRecord::Base
     locker.set_occupied
   end
 
-  def complete!(device_id)
+  def complete!
     update_attributes(current: false, end_time: DateTime.now)
     locker.set_unoccupied
   end
 
+  def reverse_creation!
+    locker.set_unoccupied
+    destroy!
+  end
+
+  def reverse_completion!
+    locker.set_occupied
+    update_attributes(current: true, end_time: nil)
+  end
 
 private
   def ensure_phone_digits_only
