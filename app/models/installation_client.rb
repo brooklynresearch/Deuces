@@ -14,10 +14,16 @@ class InstallationClient
               device_id: @device_id,
               state: 0 }
 
-    req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
-    req.body = params.to_json
-    res = Net::HTTP.start(@url.hostname, @url.port) do |http|
-      http.request(req)
+    begin
+      req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
+      req.body = params.to_json
+      res = Net::HTTP.start(@url.hostname, @url.port) do |http|
+        http.request(req)
+      end
+    rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Errno::ECONNREFUSED,
+       Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
+       puts 'issue'
+
     end
   end
 
@@ -27,10 +33,17 @@ class InstallationClient
               device_id: @device_id,
               state: 0 }
 
-    req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
-    req.body = params.to_json
-    res = Net::HTTP.start(@url.hostname, @url.port) do |http|
-      http.request(req)
+    begin
+      req = Net::HTTP::Post.new(@url, initheader = {'Content-Type' =>'application/json'})
+      req.body = params.to_json
+      res = Net::HTTP.start(@url.hostname, @url.port) do |http|
+        http.request(req)
+      end
+
+    rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Errno::ECONNREFUSED,
+       Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
+       puts 'issue'
+
     end
   end
 
