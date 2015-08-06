@@ -10,7 +10,7 @@ class LockerTest < ActiveSupport::TestCase
   test "A locker can have old rentals and current rentals" do
     locker = Locker.create
     rental_1 = locker.rentals.create(last_name: "G", phone_number: "111", terms: true)
-    rental_1.complete!
+    rental_1.complete!(1)
     rental_2 = locker.rentals.create(last_name: "G", phone_number: "111", terms: true)
     assert locker.rentals.count == 2
   end
@@ -56,7 +56,7 @@ class LockerTest < ActiveSupport::TestCase
   test "locker#current_rental returns the current rental on the locker" do
     locker = Locker.create
     rental_1 = locker.rentals.create(last_name: "G", phone_number: "111", terms: true)
-    rental_1.complete!
+    rental_1.complete!(1)
     rental_2 = locker.rentals.create(last_name: "G", phone_number: "111", terms: true)
 
     assert locker.current_rental == rental_2
@@ -65,9 +65,9 @@ class LockerTest < ActiveSupport::TestCase
   test "locker#previous_rentals returns the all past rentals locker" do
     locker = Locker.create
     rental_1 = locker.rentals.create(last_name: "G", phone_number: "111", terms: true)
-    rental_1.complete!
+    rental_1.complete!(1)
     rental_2 = locker.rentals.create(last_name: "G", phone_number: "111", terms: true)
-    rental_2.complete!
+    rental_2.complete!(1)
     rental_3 = locker.rentals.create(last_name: "G", phone_number: "111", terms: true)
 
     assert locker.previous_rentals == [rental_1, rental_2]
