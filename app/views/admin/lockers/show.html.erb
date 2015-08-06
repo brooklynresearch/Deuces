@@ -1,7 +1,7 @@
 <div id="admin-locker-show">
 
   <div id="admin-top">
-    <h1 class="admin-title">Locker #<%= @locker.id %> is <%= @locker.text_status %></h1>
+    <h1 class="admin-title">Locker #<%= @locker.id %> (<%= @locker.coordinates %>) is <%= @locker.text_status %></h1>
     <% if @current_rental %>
       <div class="rental-line current">
         <p class="rental-data"><span class="title">Name:</span> <%= @current_rental.last_name %></p>

@@ -55,12 +55,20 @@ $orange: #DF7D1C;
 
   .hidden-submit { display: none; }
 
-  #place-device {
+  .text-box{
     width: deuces-units(5); height: deuces-units(2);
     text-align: center; font-size: 26px;
-    margin: 0 auto; background-color: $lime-green;
+    margin: 0 auto;
     p { padding-top: 52px; display: block; margin: 0;}
+
+    &.long { width: deuces-units(7);}
+
+    &.green { background-color: $lime-green;}
+    &.orange { background-color: $orange;}
+    &.red { background-color: $orange;}
+
   }
+
   #all-full{
     width: deuces-units(5); height: deuces-units(2);
     text-align: center; font-size: 26px;
@@ -68,19 +76,6 @@ $orange: #DF7D1C;
     p { padding-top: 52px; display: block; margin: 0;}
   }
 
-  #retrieve-device{
-    width: deuces-units(7); height: deuces-units(2);
-    text-align: center; font-size: 26px;
-    margin: 0 auto; background-color: $lime-green;
-    p { padding-top: 52px; display: block; margin: 0;}
-  }
-
-  #admin-rental-show{
-    width: deuces-units(7); height: deuces-units(2);
-    text-align: center; font-size: 26px;
-    margin: 0 auto; background-color: $lime-green;
-    p { padding-top: 52px; display: block; margin: 0;}
-  }
 }
 
 .logo {
@@ -124,9 +119,9 @@ $orange: #DF7D1C;
   .admin-locker{
     width: 100%; padding: 25px 10px; border: 1px solid black; margin: 10px auto;
     border-radius: 4px; display: block; background-color: rgba(0,153,0, .5);
-    .locker-title {font-weight: bold; font-size: 18px; line-height: 28px;}
-    .locker-data {display: block; line-height: 22px;}
-    .title {font-weight: bold; width: 130px; display: inline-block;}
+    .locker-title {font-weight: bold; font-size: 24px; line-height: 28px;}
+    .rental-data {display: block; line-height: 22px;}
+    .title {font-weight: bold; width: 230px; display: inline-block;}
     .admin-locker-text {display: inline-block;}
     .admin-locker-links { display: inline; float: right;}
     &.occupied{

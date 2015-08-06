@@ -5,6 +5,10 @@ class Locker < ActiveRecord::Base
   scope :all_open, -> { where(occupied: false)}
   scope :ordered, -> { order(occupied: :desc, id: :asc)}
 
+  def coordinates
+    "#{('A'..'Z').to_a[row]}#{column + 1}"
+  end
+
   def set_occupied
     update_attribute(:occupied, true)
   end

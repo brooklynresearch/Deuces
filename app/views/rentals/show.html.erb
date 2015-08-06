@@ -3,12 +3,12 @@
 
 <div id="inner-container">
   <% if @rental.current %>
-    <div id="place-device">
-      <p>PLEASE PLACE DEVICE IN<br>LOCKER <%= @rental.locker_id %></p>
+    <div class="text-box green">
+      <p>PLEASE PLACE DEVICE IN<br>LOCKER <%= @rental.locker.coordinates %></p>
     </div>
   <% else %>
-    <div id="retrieve-device">
-      <p>PLEASE PICK UP DEVICE FROM<br>LOCKER <%= @rental.locker_id %></p>
+    <div class="text-box orange long">
+      <p>PLEASE PICK UP DEVICE FROM<br>LOCKER <%= @rental.locker.coordinates %></p>
     </div>
   <% end %>
 </div>
