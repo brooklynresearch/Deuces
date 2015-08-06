@@ -85,7 +85,7 @@ class RentalTest < ActiveSupport::TestCase
     assert rental.current
     assert rental.end_time.nil?
 
-    rental.complete!
+    rental.complete!(1)
     locker.reload
 
     assert !locker.occupied
@@ -120,14 +120,14 @@ class RentalTest < ActiveSupport::TestCase
     rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "1112223333", terms: true)
     assert !rental_2.valid?
 
-    rental_1.complete!
+    rental_1.complete!(1)
     assert rental_2.valid?
   end
 
   test "Can COMPLETE a rental if the phone is the same number as a old rental (ensure validation only on create, not update)" do
     locker_1 = Locker.create
     rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
-    rental_1.complete!
+    rental_1.complete!(1)
 
     locker_2 = Locker.create
     rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "1112223333", terms: true)
@@ -137,7 +137,7 @@ class RentalTest < ActiveSupport::TestCase
     assert locker_2.occupied
     assert rental_2.end_time.nil?
 
-    rental_2.complete!
+    rental_2.complete!(1)
     locker_2.reload
 
     assert !locker_2.occupied
