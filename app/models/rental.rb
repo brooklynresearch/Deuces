@@ -24,6 +24,7 @@ class Rental < ActiveRecord::Base
   def ping_installation
     InstallationClient.new(self, creation_device_id).ping_drop_off
   end
+
 private
   def ensure_phone_digits_only
     unless !!(phone_number =~ /^[0-9]+$/)
@@ -48,6 +49,7 @@ private
       errors.add(:terms, "must be approved to store your device")
     end
   end
+
   def assign_hashed_id
     generated_hash = rand(36**8).to_s(36)
     assign_hashed_id if Rental.exists?(hashed_id: generated_hash)

@@ -31,7 +31,7 @@ class RentalsController < ApplicationController
   def complete
     @rental = Rental.where(rental_params.merge(current: true)).first
     if @rental
-      @rental.complete!
+      @rental.complete!(params[:device_id])
       redirect_to rental_path(@rental)
     else
       flash[:notice] = "Sorry, we couldn't find a current rental with that information.  Please try again."

@@ -6,7 +6,7 @@ class Admin::RentalsController < ApplicationController
 
   def retrieve
     @rental = Rental.find(params[:id])
-    @rental.complete!
+    @rental.complete!(params[:device_id])
 
     redirect_to rental_path(@rental)
   end
