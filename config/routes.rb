@@ -25,4 +25,10 @@ Rails.application.routes.draw do
     end
     match 'admin' => "admin/lockers#index", via: 'get'
   end
+
+
+  resource :testing, only: [] do
+    post 'good'
+    post 'bad'
+  end
 end
