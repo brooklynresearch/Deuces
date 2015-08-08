@@ -1,5 +1,6 @@
 # test good url # @url = URI("http://www.mocky.io/v2/55c39e1a7c7d7b0a1468cacd")
 # test bad url # @url = URI("http://www.mocky.io/v2/55c39e487c7d7b111468cace")
+require 'net/http'
 
 class LockerRoomClient
 
