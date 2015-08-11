@@ -15,8 +15,8 @@
 
 <div id="button-container">
   <% if @rental.current %>
-    <%= link_to "COMPLETE", root_path, class: "btn large center" %>
+    <%= link_to "COMPLETE", hub_rentals_path, class: "btn large center" %>
   <% else %>
-    <%= link_to "UNLOCK", root_path, class: "btn large center" %>
+    <%= link_to "UNLOCK", hub_rentals_path, class: "btn large center" %>
   <% end %>
 </div>

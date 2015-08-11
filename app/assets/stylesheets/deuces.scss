@@ -7,6 +7,7 @@ body {
 $lime-green: #77BC1F;
 $orange: #DF7D1C;
 $blue: #00456E;
+$gray: #707B7B;
 
 @function deuces-units($units) {
   @return ($units/11) * 100vw;
@@ -20,7 +21,7 @@ $blue: #00456E;
   position: absolute; bottom: 0; height: deuces-units(2); width: 100%;
   .btn {
     position: absolute; height: deuces-units(1); width: deuces-units(1);
-    background-color: #707B7B; color: white; text-decoration: none;
+    background-color: $gray; color: white; text-decoration: none;
     text-align: center; line-height: deuces-units(1); border: none;
 
     &.left     { left: deuces-units(1);}
@@ -31,6 +32,10 @@ $blue: #00456E;
     &.large    { width: deuces-units(3); font-size: 30px;}
 
     &.green    { background-color: $lime-green;}
+  }
+  .chase-logo{
+    width: deuces-units(1.8); margin: 10px auto 0; position: absolute;
+    right: 12px; bottom: 30px;
   }
 }
 
@@ -71,6 +76,11 @@ $blue: #00456E;
     &.orange { background-color: $orange;}
     &.red { background-color: $orange;}
     &.blue { background-color: $blue;}
+    &.gray { background-color: $gray;}
+
+    &.multi-line{
+      p { padding-top: 22px;}
+    }
 
   }
 
@@ -92,13 +102,13 @@ $blue: #00456E;
 }
 
 .logo {
-  width: 47%; margin: 9% auto 0 auto; display: block;
+  width: 47%; margin: 10% auto 0 auto; display: block;
   &.smaller { width: 28%; margin-top: 6%;}
-  &.smallest { width: 25%; margin-top: 3.5%;}
+  &.smallest { width: 25%; margin-top: 4%;}
 }
 
 #compliments{
-  width: deuces-units(5); margin: 20px auto 0 auto;
+  width: deuces-units(5); margin: -10px auto 0 auto;
   p {margin: 0 0 0 60px; font-size: 12px;}
   .chase-logo{
     width: deuces-units(3); margin: 10px auto 0; display: block;

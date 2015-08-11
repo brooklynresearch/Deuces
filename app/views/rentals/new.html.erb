@@ -6,8 +6,9 @@
 
 <div id="inner-container">
   <% if @all_lockers_full %>
-    <div class="text-box orange">
-      <p>SORRY, ALL LOCKERS ARE CURRENTLY FULL</p>
+    <div class="text-box gray long multi-line">
+      <p>SORRY BUT ALL LOCKERS ARE<br> BEING USED AT THIS TIME</p>
+      <p>PLEASE CHECK BACK SOON</p>
     </div>
 
   <% else %>
@@ -27,9 +28,12 @@
 </div>
 
 <div id="button-container">
-  <%= link_to "BACK", size_rentals_path, class: "btn left small" %>
-  <% unless @all_lockers_full %>
+  <% if @all_lockers_full %>
+    <%= link_to "BACK", hub_rentals_path, class: "btn center large" %>
+  <% else %>
+    <%= link_to "BACK", size_rentals_path, class: "btn left small" %>
     <label for="new-submit-button" class="btn center large green">ENTER</label>
   <% end %>
 
+  <%= image_tag "chase.png", class: "chase-logo"  %>
 </div>
