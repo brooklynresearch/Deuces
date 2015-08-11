@@ -12,6 +12,18 @@ RSpec.describe RentalsController do
         expect(response.status).to eq(200)
       end
     end
+
+    context "sets @tablet based on params[:tablet]" do
+      it "sets to true with params[:tablet] present" do
+        get :new, device_id: 1, tablet: "t"
+        expect(assigns(:tablet)).to eq(true)
+      end
+
+      it "sets to false if params[:tablet] not present" do
+        get :new, device_id: 1
+        expect(assigns(:tablet)).to eq(false)
+      end
+    end
   end
 
   describe 'GET #hub' do
@@ -56,25 +68,50 @@ RSpec.describe RentalsController do
         expect(flash[:notice]).to eq "Phone number must be only digits"
       end
 
-      it 'redirects if all lockers are occupied' do
-        Locker.all.each {|l| l.set_occupied}
+      it 'redirects without creating if all LARGE lockers are occupied and storing a tablet' do
+        Locker.where(large:true).each {|l| l.set_occupied}
         post :create, device_id: 1, rental: {terms: true,
-                                             phone_number: "NOT A PHONE",
-                                             last_name: "Glass"}
+                                             phone_number: "12345",
+                                             last_name: "Glass",
+                                             large: "true"}
+        expect(response).to redirect_to new_rental_path
+        expect(flash[:notice]).to eq "Sorry, all lockers are currently occupied!"
+      end
+
+      it 'redirects without creating if all SMALL lockers are occupied and storing a phone' do
+        Locker.where(large:false).each {|l| l.set_occupied}
+        post :create, device_id: 1, rental: {terms: true,
+                                             phone_number: "12345",
+                                             last_name: "Glass",
+                                             large: "false"}
         expect(response).to redirect_to new_rental_path
         expect(flash[:notice]).to eq "Sorry, all lockers are currently occupied!"
       end
     end
 
     context "creating a rental" do
-      it "When getting a GOOD response from the locker room, creates a rental and redirects to rental show" do
-        stub_lr_good_drop_off
-        count = Rental.count
-        post :create, device_id: 1, rental: {terms: true,
-                                               phone_number: "11111",
-                                               last_name: "Glass"}
-        expect(response).to redirect_to rental_path(assigns(:rental))
-        expect(Rental.count).to eq(count + 1)
+      context "When getting a GOOD response from the locker room" do
+        it "creates a rental and redirects to rental show" do
+          stub_lr_good_drop_off
+          count = Rental.count
+          post :create, device_id: 1, rental: {terms: true,
+                                                 phone_number: "11111",
+                                                 last_name: "Glass",
+                                                 large: "true"}
+          expect(response).to redirect_to rental_path(assigns(:rental))
+          expect(Rental.count).to eq(count + 1)
+        end
+        it "stores a large device in a large lockers" do
+          stub_lr_good_drop_off
+          count = Rental.count
+          post :create, device_id: 1, rental: {terms: true,
+                                                 phone_number: "11111",
+                                                 last_name: "Glass",
+                                                 large: "true"}
+          expect(response).to redirect_to rental_path(assigns(:rental))
+          expect(Rental.count).to eq(count + 1)
+          raise r
+        end
       end
 
       it "When getting a BAD response from the locker room, doesnt create a rental and redirects to rental#new" do
@@ -86,7 +123,6 @@ RSpec.describe RentalsController do
         expect(response).to redirect_to new_rental_path
         expect(Rental.count).to eq(count)
       end
-
     end
   end
 
