@@ -1,0 +1,14 @@
+$blue-1: #0079C1;
+$blue-2: #0064A2;
+$blue-3: #00456E;
+$blue-4: #40B4E5;
+$blue-5: #0084CB;
+
+$lime-green: #77BC1F;
+$orange: #DF7D1C;
+$blue: #00456E;
+$gray: #707B7B;
+
+@function deuces-units($units) {
+  @return ($units/11) * 100vw;
+}
