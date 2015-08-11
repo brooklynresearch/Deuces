@@ -11,7 +11,7 @@ class RentalsController < ApplicationController
 
   def new
     @rental = Rental.new
-    @large = params[:large].present?
+    @large = params[:tablet].present?
   end
 
   def create
@@ -75,7 +75,7 @@ private
   end
 
   def set_all_lockers_full
-    if params["large"].present?
+    if params["tablet"].present?
       @all_lockers_full = Locker.large_open.none?
     else
       @all_lockers_full = Locker.small_open.none?
