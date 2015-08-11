@@ -11,7 +11,7 @@ class RentalsController < ApplicationController
 
   def new
     @rental = Rental.new
-    @large = params[:tablet].present?
+    @tablet = params[:tablet].present?
   end
 
   def create
