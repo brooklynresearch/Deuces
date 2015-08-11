@@ -101,7 +101,7 @@ RSpec.describe RentalsController do
           expect(response).to redirect_to rental_path(assigns(:rental))
           expect(Rental.count).to eq(count + 1)
         end
-        it "stores a large device in a large lockers" do
+        it "stores a large device in a large locker" do
           stub_lr_good_drop_off
           count = Rental.count
           post :create, device_id: 1, rental: {terms: true,
@@ -110,7 +110,45 @@ RSpec.describe RentalsController do
                                                  large: "true"}
           expect(response).to redirect_to rental_path(assigns(:rental))
           expect(Rental.count).to eq(count + 1)
-          raise r
+          expect(Rental.last.locker.large).to eq(true)
+        end
+
+        it "stores a small device in a small locker" do
+          stub_lr_good_drop_off
+          count = Rental.count
+          post :create, device_id: 1, rental: {terms: true,
+                                                 phone_number: "11111",
+                                                 last_name: "Glass",
+                                                 large: "false"}
+          expect(response).to redirect_to rental_path(assigns(:rental))
+          expect(Rental.count).to eq(count + 1)
+          expect(Rental.last.locker.large).to eq(false)
+        end
+
+        it "stores a small device even if all large devices are occupied" do
+          stub_lr_good_drop_off
+          Locker.where(large: true).each(&:set_occupied)
+          count = Rental.count
+          post :create, device_id: 1, rental: {terms: true,
+                                                 phone_number: "11111",
+                                                 last_name: "Glass",
+                                                 large: "false"}
+          expect(response).to redirect_to rental_path(assigns(:rental))
+          expect(Rental.count).to eq(count + 1)
+          expect(Rental.last.locker.large).to eq(false)
+        end
+
+        it "stores a large device even if all small devices are occupied" do
+          stub_lr_good_drop_off
+          Locker.where(large: false).each(&:set_occupied)
+          count = Rental.count
+          post :create, device_id: 1, rental: {terms: true,
+                                                 phone_number: "11111",
+                                                 last_name: "Glass",
+                                                 large: "true"}
+          expect(response).to redirect_to rental_path(assigns(:rental))
+          expect(Rental.count).to eq(count + 1)
+          expect(Rental.last.locker.large).to eq(true)
         end
       end
 
