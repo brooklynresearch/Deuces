@@ -80,6 +80,5 @@ private
     else
       @all_lockers_full = Locker.small_open.none?
     end
-    @all_lockers_full = true
   end
 end
