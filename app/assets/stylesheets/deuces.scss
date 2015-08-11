@@ -6,6 +6,7 @@ body {
 
 $lime-green: #77BC1F;
 $orange: #DF7D1C;
+$blue: #00456E;
 
 @function deuces-units($units) {
   @return ($units/11) * 100vw;
@@ -61,11 +62,15 @@ $orange: #DF7D1C;
     margin: 0 auto;
     p { padding-top: 52px; display: block; margin: 0;}
 
+    &.short { height: deuces-units(.5);}
+
     &.long { width: deuces-units(7);}
+    &.small { width: deuces-units(3);}
 
     &.green { background-color: $lime-green;}
     &.orange { background-color: $orange;}
     &.red { background-color: $orange;}
+    &.blue { background-color: $blue;}
 
   }
 
@@ -76,6 +81,14 @@ $orange: #DF7D1C;
     p { padding-top: 52px; display: block; margin: 0;}
   }
 
+  .btn{
+    position: absolute; height: deuces-units(.5); width: deuces-units(3);
+    background-color: white; color: $blue; text-decoration: none;
+    text-align: center; line-height: deuces-units(.5); border: none;
+    top: deuces-units(1); left: deuces-units(4);
+
+    &.bottom {top: deuces-units(2);}
+  }
 }
 
 .logo {

@@ -11,9 +11,16 @@
   <% @lockers.each do |locker| %>
     <div class="admin-locker <%= 'occupied' if locker.occupied %>">
       <div class="admin-locker-text">
-        <span class="locker-title">Locker #<%= locker.id %> (<%= locker.coordinates %>): <%= locker.text_status %></span>
+        <span class="locker-title">
+          Locker #<%= locker.id %> --
+          <%= locker.coordinates %> --
+          <% if locker.large %>TABLET --<% end %>
+          <%= locker.text_status %>
+        </span>
         <% if locker.occupied? && locker.current_rental.present? %>
           <% current_rental = locker.current_rental %>
+          <br>
+          <br>
           <span class="rental-data"><span class="title">Last Name:</span> <%= current_rental.last_name %></span>
           <span class="rental-data"><span class="title">Phone Number:</span> <%= current_rental.phone_number %></span>
           <span class="rental-data"><span class="title">Unique ID:</span> <%= current_rental.hashed_id %></span>
@@ -22,7 +29,7 @@
       </div>
       <div class="admin-locker-links">
         <% if locker.occupied && locker.current_rental.present? %>
-          <%= link_to "Retrieve Phone", admin_rental_path(locker.current_rental), class: "admin-button" %>
+          <%= link_to "Retrieve Device", admin_rental_path(locker.current_rental), class: "admin-button" %>
         <% end %>
         <%= link_to "History", admin_locker_path(locker), class: "admin-button" %>
       </div>

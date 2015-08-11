@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150624141847) do
     t.integer  "column"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.boolean  "large"
   end
 
   create_table "rentals", force: :cascade do |t|

@@ -1,13 +1,17 @@
 class RentalsController < ApplicationController
 
   before_action :select_locker_or_prevent_rental, only: :create
-  before_action :set_all_lockers_full, only: [:hub, :new]
+  before_action :set_all_lockers_full, only: [:new]
 
   def hub
   end
 
+  def size
+  end
+
   def new
     @rental = Rental.new
+    @large = params[:large].present?
   end
 
   def create
@@ -59,13 +63,22 @@ private
   end
 
   def select_locker_or_prevent_rental
-    @selected_locker = Locker.all_open.sample
+    if params[:rental][:large] == "true"
+      @selected_locker = Locker.large_open.sample
+    else
+      @selected_locker = Locker.small_open.sample
+    end
+
     unless @selected_locker.present?
       redirect_to new_rental_path, :notice => "Sorry, all lockers are currently occupied!"
     end
   end
 
   def set_all_lockers_full
-    @all_lockers_full = Locker.open_count == 0
+    if params["large"].present?
+      @all_lockers_full = Locker.large_open.none?
+    else
+      @all_lockers_full = Locker.small_open.none?
+    end
   end
 end

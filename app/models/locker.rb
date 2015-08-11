@@ -4,6 +4,8 @@ class Locker < ActiveRecord::Base
   scope :all_occupied, -> { where(occupied: true)}
   scope :all_open, -> { where(occupied: false)}
   scope :ordered, -> { order(occupied: :desc, id: :asc)}
+  scope :large_open, -> { where(occupied: false, large: true)}
+  scope :small_open, -> { where(occupied: false, large: false)}
 
   def coordinates
     "#{('A'..'Z').to_a[row]}#{column + 1}"

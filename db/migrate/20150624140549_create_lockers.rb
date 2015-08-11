@@ -5,6 +5,7 @@ class CreateLockers < ActiveRecord::Migration
       t.integer :row
       t.integer :column
       t.timestamps null: false
+      t.boolean :large
     end
   end
 end

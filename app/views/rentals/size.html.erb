@@ -1,0 +1,19 @@
+<%= image_tag "power_up.png", class: "logo smaller" %>
+
+<% if flash[:notice] %>
+  <p class="form-errors"><%= flash[:notice] %></p>
+<% end %>
+
+<div id="inner-container">
+  <div class="text-box blue small short">
+    DEVICE
+  </div>
+
+  <%= link_to "PHONE", new_rental_path, class: "btn" %>
+  <%= link_to "TABLET", new_rental_path(large: true), class: "btn bottom" %>
+
+</div>
+
+<div id="button-container">
+  <%= link_to "BACK", root_path, class: "btn left small" %>
+</div>

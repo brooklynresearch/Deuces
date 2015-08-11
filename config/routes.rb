@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :rentals, only: [:new, :create, :show] do
       collection do
         get 'hub'
+        get 'size'
         get 'retrieve'
         put 'complete'
       end

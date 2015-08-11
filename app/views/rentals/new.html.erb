@@ -13,6 +13,7 @@
   <% else %>
     <%= form_for @rental, html: {id: "new-rental-form"} do |f| %>
       <%= f.hidden_field :creation_device_id, value: @device_id %>
+      <%= f.hidden_field :large, value: @large %>
       <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2" %>
       <%= f.text_field :phone_number, placeholder: "PHONE NUMBER", class: "text-input line-3",
           type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*" %>
@@ -26,7 +27,7 @@
 </div>
 
 <div id="button-container">
-  <%= link_to "BACK", root_path, class: "btn left small" %>
+  <%= link_to "BACK", size_rentals_path, class: "btn left small" %>
   <% unless @all_lockers_full %>
     <label for="new-submit-button" class="btn center large green">ENTER</label>
   <% end %>
