@@ -156,4 +156,32 @@ RSpec.describe Rental, type: :model do
 
     end
   end
+
+  context "upcasing last_name" do
+    it "rentals are stored with all up case" do
+      locker_1 = Locker.create
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+
+      assert rental_1.last_name ==  "GLASS"
+    end
+  end
+
+  context ".find_current" do
+    it "finds a current rental" do
+      locker_1 = Locker.create
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+
+      rental = Rental.find_current("GLASS", "1112223333")
+      assert rental.id == rental_1.id
+    end
+
+    it "is case insensitive" do
+      locker_1 = Locker.create
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+
+      rental = Rental.find_current("GlaSs", "1112223333")
+      assert rental.id == rental_1.id
+    end
+
+  end
 end

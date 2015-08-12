@@ -21,9 +21,8 @@ class Admin::RentalsController < ApplicationController
   end
 
   def find
-    @rental = Rental.where(current: true,
-                           last_name: params["last_name"],
-                           phone_number: params["phone_number"]).first
+    @rental = Rental.find_current(params["last_name"], params["phone_number"])
+
     if @rental
       redirect_to admin_rental_path(@rental)
     else

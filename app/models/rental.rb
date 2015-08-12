@@ -10,6 +10,10 @@ class Rental < ActiveRecord::Base
   after_create :set_locker_occupied
   after_create :assign_hashed_id
 
+  def self.find_current(last_name,phone_number)
+    where(last_name:last_name.upcase, phone_number: phone_number, current: true).first
+  end
+
   def set_locker_occupied
     locker.set_occupied
   end
@@ -29,7 +33,14 @@ class Rental < ActiveRecord::Base
     update_attributes(current: true, end_time: nil)
   end
 
+  def last_name=(s)
+    write_attribute(:last_name, s.to_s.upcase)
+  end
+
 private
+
+
+
   def ensure_phone_digits_only
     unless !!(phone_number =~ /^[0-9]+$/)
       errors.add(:phone_number, "must be only digits")

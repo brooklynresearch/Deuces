@@ -40,7 +40,7 @@ class RentalsController < ApplicationController
   end
 
   def complete
-    @rental = Rental.where(rental_params.merge(current: true)).first
+    @rental = Rental.find_current(rental_params["last_name"], rental_params["phone_number"])
     if @rental
       @rental.complete!
       lrc_response = LockerRoomClient.new(@rental, params).ping_retrieval
