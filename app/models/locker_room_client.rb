@@ -24,7 +24,7 @@ class LockerRoomClient
     params = {row: @locker.row,
               col: @locker.column,
               device_id: @device_id,
-              state: 0 }
+              state: 1 }
     make_request(params)
   end
 
