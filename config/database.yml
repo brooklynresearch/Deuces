@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: deuces_production
-  username: deuces
-  password: <%= ENV['DEUCES_DATABASE_PASSWORD'] %>
+  username: postgres
+  # password: <%= ENV['DEUCES_DATABASE_PASSWORD'] %>
