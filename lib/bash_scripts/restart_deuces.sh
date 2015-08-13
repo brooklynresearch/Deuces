@@ -11,4 +11,4 @@ do
   echo $i;
   sleep 1s
 done
-rails server -e production
+rails server -b 0.0.0.0 -e production -d
