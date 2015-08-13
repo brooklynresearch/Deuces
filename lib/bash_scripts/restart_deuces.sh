@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # A script to kill and restart the rails server
 
-cd ~/Documents/workspace/Deuces/
+cd ~/Documents/Deuces/
 echo 'killing current server'
 kill `cat tmp/pids/server.pid`
 echo 'restarting in'
