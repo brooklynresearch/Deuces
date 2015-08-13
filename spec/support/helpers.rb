@@ -1,9 +1,5 @@
 module Helpers
 
-  def stub_basic_auth
-    expect(controller).to receive(:basic_auth).and_return(true)
-  end
-
   def seed_lockers
     Locker.create(row: 0, column: 1, large: false)
     Locker.create(row: 0, column: 2,large: false)

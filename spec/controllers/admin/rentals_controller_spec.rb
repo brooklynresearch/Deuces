@@ -1,7 +1,6 @@
 RSpec.describe Admin::RentalsController do
 
   before(:each) do
-    stub_basic_auth
     seed_lockers
   end
 
