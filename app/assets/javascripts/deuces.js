@@ -6,18 +6,30 @@ deuces = {
 
 
   idleWatch: function(){
-    if($('#idle-watch').length > 0){
-      idleTimer = null;
-      idleWait = 30000;
+    if (typeof counter != "undefined") {
+      console.log('clearing via new')
+      clearInterval(counter)
+    }
+
+    if($('.idle-watch').length > 0){
+      counter = setInterval(function () {
+        console.log('counting down...')
+        $(".form-errors").text($('.idle-watch').data('count'))
+
+        oldCount = $('.idle-watch').data('count')
+        $('.idle-watch').data('count', oldCount - 1)
+        if($('.idle-watch').data('count') <= 0){
+          window.location.replace($('.idle-watch').data('destination'))
+        }
+      }, 1000);
 
       $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend click', function () {
-          $(".form-errors").text(new Date().getTime())
-          clearTimeout(idleTimer);
-          idleTimer = setTimeout(function () {
-            window.location.replace($('#idle-watch').data('destination'))}, idleWait);
+        console.log('clearing via action')
+        $('.idle-watch').data('count', 30)
       });
-      $("body").trigger("mousemove");
     }
+    $("body").trigger("mousemove");
+
   },
 
   formWatch: function(){
