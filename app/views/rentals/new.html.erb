@@ -14,18 +14,18 @@
     </div>
 
   <% else %>
-    <%= form_for @rental, html: {id: "new-rental-form"} do |f| %>
+    <%= form_for @rental, html: {id: "new-rental-form", class: "validate-form"} do |f| %>
       <%= f.hidden_field :creation_device_id, value: @device_id %>
       <%= f.hidden_field :large, value: @tablet %>
-      <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2" %>
-      <%= f.text_field :phone_number, placeholder: "LAST 4 DIGITS OF PHONE #", class: "text-input line-3",
+      <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2 name-input" %>
+      <%= f.text_field :phone_number, placeholder: "LAST 4 DIGITS OF PHONE #", class: "text-input line-3 phone-input",
           type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*" %>
       <div class="text-input line-4 checkbox-container">
-        <%= f.check_box :terms, id: "terms" %>
+        <%= f.check_box :terms, id: "terms", class: "terms-input" %>
         <label for="terms"></label>
         <p id="conditions">IF YOU AGREE BY CHECKING THIS BOX YOUR PERSONAL INFORMATION WILL BE USED SOLELY TO RESERVE YOUR CHARGING STATION LOCKER AND WILL NOT BE STORED AFTER YOUR USE.</p>
       </div>
-      <%= f.submit "submit", id: "new-submit-button", class: "hidden-submit" %>
+      <%= f.submit "submit", id: "new-submit-button", disabled: true, class: "hidden-submit" %>
     <% end %>
   <% end %>
 </div>
@@ -35,7 +35,7 @@
     <%= link_to "BACK", hub_rentals_path, class: "btn center large" %>
   <% else %>
     <%= link_to "BACK", size_rentals_path, class: "btn left small" %>
-    <label for="new-submit-button" class="btn center large green">ENTER</label>
+    <label for="new-submit-button" class="btn center large submit-label">ENTER</label>
   <% end %>
 
   <%= image_tag "chase.png", class: "chase-logo"  %>
