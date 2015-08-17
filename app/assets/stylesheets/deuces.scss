@@ -81,11 +81,9 @@ body {
     &.long { width: deuces-units(7);}
     &.small { width: deuces-units(3);}
 
-    &.green { background-color: $lime-green;}
-    &.orange { background-color: $orange;}
-    &.red { background-color: $orange;}
-    &.blue { background-color: $blue;}
-    &.gray { background-color: $gray;}
+    &.zero     { background-color: $lime-green;}
+    &.one     { background-color: $orange;}
+    &.two     { background-color: $blue;}
 
     &.multi-line{
       p { padding-top: 22px;}
