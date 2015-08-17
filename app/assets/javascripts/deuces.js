@@ -35,7 +35,7 @@ deuces = {
         }
       });
 
-      $(".validate-form *").live("keyup", function(evt) {
+      $(".validate-form *").bind("keypress keydown keyup", function(evt) {
         alert(evt.keyCode)
         if (evt.keyCode === 13) {
           alert('go button clicked')
