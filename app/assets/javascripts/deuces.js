@@ -36,9 +36,13 @@ deuces = {
       });
 
       $(".validate-form *").bind("keypress keydown keyup", function(evt) {
-        alert(evt.keyCode)
         if (evt.keyCode === 13) {
-          alert('go button clicked')
+          if(deuces.formFilled()){
+            $(".validate-form").submit()
+          }
+          else{
+            $(".form-errors").text('Please fill out all fields')
+          }
         }
       });
     }

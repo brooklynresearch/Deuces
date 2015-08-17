@@ -2,9 +2,9 @@
 
 <%= image_tag "power_up.png", class: "logo smaller" %>
 
-<% if flash[:notice] %>
-  <p class="form-errors"><%= flash[:notice] %></p>
-<% end %>
+<p class="form-errors">
+  <%= flash[:notice] if flash[:notice] %>
+</p>
 
 <div id="inner-container">
   <div class="text-box long orange">

@@ -2,9 +2,9 @@
 
 <%= image_tag "power_up.png", class: "logo smallest" %>
 
-<% if flash[:notice] %>
-  <p class="form-errors"><%= flash[:notice] %></p>
-<% end %>
+  <p class="form-errors">
+    <%= flash[:notice] if flash[:notice] %>
+  </p>
 
 <div id="inner-container">
   <%= form_tag(complete_rentals_path, method: :put, id: "retrieve-rental-form", class: "validate-form") do  %>
