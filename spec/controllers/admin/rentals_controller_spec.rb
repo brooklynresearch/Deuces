@@ -10,7 +10,7 @@ RSpec.describe Admin::RentalsController do
 
       locker = Locker.create(row: 1, column: 1)
       rental = Rental.create(locker: locker, last_name: "Glass",
-                             phone_number: "1112223333", terms: true)
+                             phone_number: "1234", terms: true)
       expect(rental.current).to eq true
       expect(locker.occupied).to eq true
 
@@ -29,7 +29,7 @@ RSpec.describe Admin::RentalsController do
 
       locker = Locker.create(row: 1, column: 1)
       rental = Rental.create(locker: locker, last_name: "Glass",
-                             phone_number: "1112223333", terms: true)
+                             phone_number: "1234", terms: true)
       expect(rental.current).to eq true
       expect(locker.occupied).to eq true
 

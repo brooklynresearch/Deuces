@@ -2,7 +2,7 @@ class Rental < ActiveRecord::Base
   belongs_to :locker
 
   validates_presence_of :last_name, :phone_number, :locker_id
-  validate :ensure_phone_digits_only
+  validate :ensure_phone_four_digits
   validate :ensure_locker_unoccupied, on: :create
   validate :ensure_phone_not_currently_stored, on: :create
   validate :ensure_terms, on: :create
@@ -41,9 +41,9 @@ private
 
 
 
-  def ensure_phone_digits_only
-    unless !!(phone_number =~ /^[0-9]+$/)
-      errors.add(:phone_number, "must be only digits")
+  def ensure_phone_four_digits
+    unless !!(phone_number =~ /^[0-9]+$/) && phone_number.length == 4
+      errors.add(:phone_number, "must be 4 digits")
     end
   end
 
