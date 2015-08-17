@@ -102,13 +102,23 @@ RSpec.describe Rental, type: :model do
       assert rental.hashed_id.length == 8
     end
 
-    it "CANNOT store a phone with the same number as a current rental" do
+    it "CAN store a phone with the same number, but different name as a current rental" do
       locker_1 = Locker.create
       rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "2211", terms: true)
       assert rental_1.valid?
 
       locker_2 = Locker.create
-      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "2211", terms: true)
+      rental_2 = Rental.create(last_name: "Lu", locker_id: locker_2.id, phone_number: "2211", terms: true)
+      assert rental_2.valid?
+    end
+
+    it "CANNOT store a phone with the same number, and same name as a current rental" do
+      locker_1 = Locker.create
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "2211", terms: true)
+      assert rental_1.valid?
+
+      locker_2 = Locker.create
+      rental_2 = Rental.create(last_name: "GLASS", locker_id: locker_2.id, phone_number: "2211", terms: true)
       assert !rental_2.valid?
     end
 

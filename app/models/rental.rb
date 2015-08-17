@@ -54,7 +54,7 @@ private
   end
 
   def ensure_phone_not_currently_stored
-    if Rental.exists?(phone_number: phone_number, current: true)
+    if Rental.exists?(phone_number: phone_number, last_name: last_name, current: true)
       errors.add(:phone_number, "is currently stored in a locker")
     end
   end
