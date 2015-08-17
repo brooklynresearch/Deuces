@@ -2,6 +2,7 @@ deuces = {
   init: function(){
     deuces.idleWatch()
     deuces.formWatch()
+    deuces.submitWatch()
   },
 
 
@@ -54,6 +55,14 @@ deuces = {
         }
       });
     }
+  },
+
+  submitWatch: function(){
+    $('.submit-label').click(function(){
+      if (!deuces.formFilled()){
+        $(".form-errors").text('Please fill out all fields')
+      }
+    })
   },
 
   formFilled: function(){
