@@ -7,15 +7,15 @@
 <% end %>
 
 <div id="inner-container">
-  <%= form_tag find_admin_rentals_path do %>
-    <%= text_field_tag "last_name", "", placeholder: "LAST NAME", class: "text-input line-2" %>
-    <%= text_field_tag "phone_number", "", placeholder: "PHONE NUMBER", class: "text-input line-3",
+  <%= form_tag find_admin_rentals_path, class: "validate-form" do %>
+    <%= text_field_tag "last_name", "", placeholder: "LAST NAME", class: "text-input line-2 name-input" %>
+    <%= text_field_tag "phone_number", "", placeholder: "LAST 4 DIGITS OF PHONE #", class: "text-input line-3 phone-input",
         type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*" %>
-    <%= submit_tag "submit", id: "admin-search-button", class: "hidden-submit" %>
+    <%= submit_tag "submit", id: "admin-search-button", disabled: true, class: "hidden-submit" %>
   <% end %>
 </div>
 
 <div id="button-container">
   <%= link_to "ADMIN", admin_lockers_path, class: "btn left small" %>
-  <label for="admin-search-button" class="btn center large green">ENTER</label>
+  <label for="admin-search-button" class="btn center large submit-label">ENTER</label>
 </div>

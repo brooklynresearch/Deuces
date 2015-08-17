@@ -3,13 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :validate_device_id
-  before_action :basic_auth
-
-  def basic_auth
-    authenticate_or_request_with_http_basic('Enter your login') do |username, password|
-      username == ENV['DEUCES_USERNAME'] && password == ENV['DEUCES_PASSWORD']
-    end
-  end
 
   def validate_device_id
     unless ["0","1","2"].include?(params["device_id"])

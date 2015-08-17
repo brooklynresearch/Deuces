@@ -7,7 +7,7 @@ class Admin::RentalsController < ApplicationController
   def retrieve
     @rental = Rental.find(params[:id])
     @rental.complete!
-    lrc_response = LockerRoomClient.new(@rental, params).ping_retrieval
+    lrc_response = LockerRoomClient.new(@rental, params[:device_id]).ping_retrieval
     if lrc_response
       redirect_to rental_path(@rental)
     else

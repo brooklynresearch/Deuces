@@ -18,18 +18,5 @@
 
 
 $(document).on('ready page:load', function () {
-  if($('#idle-watch').length > 0){
-    idleTimer = null;
-    idleState = false;
-    idleWait = 30000;
-
-    $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend', function () {
-        clearTimeout(idleTimer);
-        idleState = false;
-        idleTimer = setTimeout(function () {
-          window.location.replace($('#idle-watch').data('destination'))
-          idleState = true; }, idleWait);
-    });
-    $("body").trigger("mousemove");
-  }
+  deuces.init()
 });

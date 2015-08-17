@@ -43,7 +43,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find_current(rental_params["last_name"], rental_params["phone_number"])
     if @rental
       @rental.complete!
-      lrc_response = LockerRoomClient.new(@rental, params).ping_retrieval
+      lrc_response = LockerRoomClient.new(@rental, params[:device_id]).ping_retrieval
       if lrc_response
         redirect_to rental_path(@rental)
       else

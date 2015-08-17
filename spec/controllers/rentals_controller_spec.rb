@@ -1,7 +1,6 @@
 RSpec.describe RentalsController do
 
   before(:each) do
-    stub_basic_auth
     seed_lockers
   end
 
@@ -48,14 +47,14 @@ RSpec.describe RentalsController do
     context 'not creating a rental' do
       it 'redirects when not provided valid info for a rental (no terms)' do
         post :create, device_id: 1, rental: {last_name: "Glass",
-                                             phone_number: "1112223333"}
+                                             phone_number: "1111"}
         expect(response).to redirect_to new_rental_path
         expect(flash[:notice]).to eq "Terms must be approved to store your device"
       end
 
       it 'redirects when not provided valid info for a rental (no name)' do
         post :create, device_id: 1, rental: {terms: true,
-                                             phone_number: "1112223333"}
+                                             phone_number: "2222"}
         expect(response).to redirect_to new_rental_path
         expect(flash[:notice]).to eq "Last name can't be blank"
       end
@@ -65,13 +64,22 @@ RSpec.describe RentalsController do
                                              phone_number: "NOT A PHONE",
                                              last_name: "Glass"}
         expect(response).to redirect_to new_rental_path
-        expect(flash[:notice]).to eq "Phone number must be only digits"
+        expect(flash[:notice]).to eq "Phone number must be 4 digits"
       end
+
+      it 'redirects when not provided valid info for a rental (> 4 digit phone number)' do
+        post :create, device_id: 1, rental: {terms: true,
+                                             phone_number: "12345",
+                                             last_name: "Glass"}
+        expect(response).to redirect_to new_rental_path
+        expect(flash[:notice]).to eq "Phone number must be 4 digits"
+      end
+
 
       it 'redirects without creating if all LARGE lockers are occupied and storing a tablet' do
         Locker.where(large:true).each {|l| l.set_occupied}
         post :create, device_id: 1, rental: {terms: true,
-                                             phone_number: "12345",
+                                             phone_number: "1232",
                                              last_name: "Glass",
                                              large: "true"}
         expect(response).to redirect_to new_rental_path
@@ -81,7 +89,7 @@ RSpec.describe RentalsController do
       it 'redirects without creating if all SMALL lockers are occupied and storing a phone' do
         Locker.where(large:false).each {|l| l.set_occupied}
         post :create, device_id: 1, rental: {terms: true,
-                                             phone_number: "12345",
+                                             phone_number: "1234",
                                              last_name: "Glass",
                                              large: "false"}
         expect(response).to redirect_to new_rental_path
@@ -95,7 +103,7 @@ RSpec.describe RentalsController do
           stub_lr_good_drop_off
           count = Rental.count
           post :create, device_id: 1, rental: {terms: true,
-                                                 phone_number: "11111",
+                                                 phone_number: "1234",
                                                  last_name: "Glass",
                                                  large: "true"}
           expect(response).to redirect_to rental_path(assigns(:rental))
@@ -105,7 +113,7 @@ RSpec.describe RentalsController do
           stub_lr_good_drop_off
           count = Rental.count
           post :create, device_id: 1, rental: {terms: true,
-                                                 phone_number: "11111",
+                                                 phone_number: "1234",
                                                  last_name: "Glass",
                                                  large: "true"}
           expect(response).to redirect_to rental_path(assigns(:rental))
@@ -117,7 +125,7 @@ RSpec.describe RentalsController do
           stub_lr_good_drop_off
           count = Rental.count
           post :create, device_id: 1, rental: {terms: true,
-                                                 phone_number: "11111",
+                                                 phone_number: "1234",
                                                  last_name: "Glass",
                                                  large: "false"}
           expect(response).to redirect_to rental_path(assigns(:rental))
@@ -130,7 +138,7 @@ RSpec.describe RentalsController do
           Locker.where(large: true).each(&:set_occupied)
           count = Rental.count
           post :create, device_id: 1, rental: {terms: true,
-                                                 phone_number: "11111",
+                                                 phone_number: "1234",
                                                  last_name: "Glass",
                                                  large: "false"}
           expect(response).to redirect_to rental_path(assigns(:rental))
@@ -143,7 +151,7 @@ RSpec.describe RentalsController do
           Locker.where(large: false).each(&:set_occupied)
           count = Rental.count
           post :create, device_id: 1, rental: {terms: true,
-                                                 phone_number: "11111",
+                                                 phone_number: "1234",
                                                  last_name: "Glass",
                                                  large: "true"}
           expect(response).to redirect_to rental_path(assigns(:rental))
@@ -156,7 +164,7 @@ RSpec.describe RentalsController do
         stub_lr_bad_drop_off
         count = Rental.count
         post :create, device_id: 1, rental: {terms: true,
-                                               phone_number: "11111",
+                                               phone_number: "1234",
                                                last_name: "Glass"}
         expect(response).to redirect_to new_rental_path
         expect(Rental.count).to eq(count)
@@ -168,7 +176,7 @@ RSpec.describe RentalsController do
     context 'not finding a rental' do
       it 'redirects when cannot find a rental in the db)' do
         put :complete, device_id: 1, rental: {last_name: "Glass",
-                                             phone_number: "1112223333"}
+                                             phone_number: "1234"}
         expect(response).to redirect_to retrieve_rentals_path
         expect(flash[:notice]).to eq "Sorry, we couldn't find a current rental with that information.  Please try again."
       end
@@ -181,12 +189,12 @@ RSpec.describe RentalsController do
 
         locker = Locker.create(row: 1, column: 1)
         rental = Rental.create(locker: locker, last_name: "Glass",
-                               phone_number: "1112223333", terms: true)
+                               phone_number: "1234", terms: true)
         expect(rental.current).to eq true
         expect(locker.occupied).to eq true
 
         put :complete, device_id: 1, rental: { last_name: "Glass",
-                                               phone_number: "1112223333"}
+                                               phone_number: "1234"}
 
         rental.reload
         locker.reload
@@ -201,12 +209,12 @@ RSpec.describe RentalsController do
 
         locker = Locker.create(row: 1, column: 1)
         rental = Rental.create(locker: locker, last_name: "Glass",
-                               phone_number: "1112223333", terms: true)
+                               phone_number: "1234", terms: true)
         expect(rental.current).to eq true
         expect(locker.occupied).to eq true
 
         put :complete, device_id: 1, rental: { last_name: "Glass",
-                                               phone_number: "1112223333"}
+                                               phone_number: "1234"}
 
         rental.reload
         locker.reload

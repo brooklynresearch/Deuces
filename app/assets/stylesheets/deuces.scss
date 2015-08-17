@@ -42,6 +42,7 @@ body {
     text-align: center; font-size: 30px; text-transform: uppercase;
     width: deuces-units(5); height: deuces-units(.5);
     position: absolute; left:  deuces-units(3);
+    padding: 0; border: 0;
 
     &.line-2{ top: 0; }
     &.line-3{ top: deuces-units(1); }
@@ -72,7 +73,10 @@ body {
     margin: 0 auto;
     p { padding-top: 52px; display: block; margin: 0;}
 
-    &.short { height: deuces-units(.5);}
+    &.short {
+      height: deuces-units(.5);
+      p{ padding-top: 6px;}
+    }
 
     &.long { width: deuces-units(7);}
     &.small { width: deuces-units(3);}

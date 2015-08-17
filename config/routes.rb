@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'rentals#hub', :device_id => "1"
+  root 'rentals#hub', :device_id => "0"
 
   scope ":device_id" do
     resources :rentals, only: [:new, :create, :show] do

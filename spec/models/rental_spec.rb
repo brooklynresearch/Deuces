@@ -72,14 +72,14 @@ RSpec.describe Rental, type: :model do
       locker = Locker.create
       assert !locker.occupied
 
-      Rental.create(last_name: "Glass", locker_id: locker.id, phone_number: "32323", terms: true)
+      Rental.create(last_name: "Glass", locker_id: locker.id, phone_number: "3223", terms: true)
       locker = locker.reload
       assert locker.occupied
     end
 
     it "Rental#complete! updates current: false, end_time: DateTime.now and sets locker unoccupied" do
       locker = Locker.create
-      rental = Rental.create(last_name: "Glass", locker_id: locker.id, phone_number: "32323", terms: true)
+      rental = Rental.create(last_name: "Glass", locker_id: locker.id, phone_number: "3223", terms: true)
       locker.reload
       assert locker.occupied
       assert rental.current
@@ -96,7 +96,7 @@ RSpec.describe Rental, type: :model do
 
     it "Rental generates a hashed_id after creation" do
       locker = Locker.create
-      rental = Rental.create(last_name: "Glass", locker_id: locker.id, phone_number: "32323", terms: true)
+      rental = Rental.create(last_name: "Glass", locker_id: locker.id, phone_number: "1234", terms: true)
       assert rental.hashed_id.present?
       assert rental.hashed_id.is_a?(String)
       assert rental.hashed_id.length == 8
@@ -104,20 +104,20 @@ RSpec.describe Rental, type: :model do
 
     it "CANNOT store a phone with the same number as a current rental" do
       locker_1 = Locker.create
-      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "2211", terms: true)
       assert rental_1.valid?
 
       locker_2 = Locker.create
-      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "1112223333", terms: true)
+      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "2211", terms: true)
       assert !rental_2.valid?
     end
 
     it "CAN store a phone with the same number as a old rental" do
       locker_1 = Locker.create
-      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1234", terms: true)
 
       locker_2 = Locker.create
-      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "1112223333", terms: true)
+      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "1234", terms: true)
       assert !rental_2.valid?
 
       rental_1.complete!
@@ -126,11 +126,11 @@ RSpec.describe Rental, type: :model do
 
     it "Can COMPLETE a rental if the phone is the same number as a old rental (ensure validation only on create, not update)" do
       locker_1 = Locker.create
-      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "4444", terms: true)
       rental_1.complete!
 
       locker_2 = Locker.create
-      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "1112223333", terms: true)
+      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_2.id, phone_number: "2222", terms: true)
       locker_2.reload
 
       assert rental_2.current
@@ -148,8 +148,8 @@ RSpec.describe Rental, type: :model do
 
     it "Cannot double assign a locker" do
       locker_1 = Locker.create
-      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
-      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "9998887777", terms: true)
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1111", terms: true)
+      rental_2 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "2222", terms: true)
 
       assert rental_1.valid?
       assert !rental_2.valid?
@@ -160,7 +160,7 @@ RSpec.describe Rental, type: :model do
   context "upcasing last_name" do
     it "rentals are stored with all up case" do
       locker_1 = Locker.create
-      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "3333", terms: true)
 
       assert rental_1.last_name ==  "GLASS"
     end
@@ -169,17 +169,17 @@ RSpec.describe Rental, type: :model do
   context ".find_current" do
     it "finds a current rental" do
       locker_1 = Locker.create
-      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "3123", terms: true)
 
-      rental = Rental.find_current("GLASS", "1112223333")
+      rental = Rental.find_current("GLASS", "3123")
       assert rental.id == rental_1.id
     end
 
     it "is case insensitive" do
       locker_1 = Locker.create
-      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1112223333", terms: true)
+      rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "3132", terms: true)
 
-      rental = Rental.find_current("GlaSs", "1112223333")
+      rental = Rental.find_current("GlaSs", "3132")
       assert rental.id == rental_1.id
     end
 
