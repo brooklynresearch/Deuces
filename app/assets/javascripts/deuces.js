@@ -20,12 +20,11 @@ deuces = {
       }, 1000);
 
       $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend click', function () {
-          clearTimeout(idleTimer);
-          idleTimer = setTimeout(function () {
-            window.location.replace($('#idle-watch').data('destination'))}, idleWait);
+        $('.idle-watch').data('count', 30)
       });
-      $("body").trigger("mousemove");
     }
+    $("body").trigger("mousemove");
+
   },
 
   formWatch: function(){
