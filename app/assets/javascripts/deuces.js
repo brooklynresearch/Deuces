@@ -8,16 +8,13 @@ deuces = {
   idleWatch: function(){
     if($('#idle-watch').length > 0){
       idleTimer = null;
-      idleState = false;
       idleWait = 30000;
 
       $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend click', function () {
           $(".form-errors").text(new Date().getTime())
           clearTimeout(idleTimer);
-          idleState = false;
           idleTimer = setTimeout(function () {
-            window.location.replace($('#idle-watch').data('destination'))
-            idleState = true; }, idleWait);
+            window.location.replace($('#idle-watch').data('destination'))}, idleWait);
       });
       $("body").trigger("mousemove");
     }
