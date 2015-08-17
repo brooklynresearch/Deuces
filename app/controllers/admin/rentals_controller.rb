@@ -1,4 +1,5 @@
 class Admin::RentalsController < ApplicationController
+  before_action :admin_basic_auth
 
   def show
     @rental = Rental.find(params[:id])

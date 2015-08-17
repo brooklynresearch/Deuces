@@ -2,6 +2,7 @@ RSpec.describe Admin::RentalsController do
 
   before(:each) do
     seed_lockers
+    stub_admin_auth
   end
 
   context "POST #retrieve" do

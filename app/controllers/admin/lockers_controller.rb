@@ -1,4 +1,5 @@
 class Admin::LockersController < ApplicationController
+  before_action :admin_basic_auth
 
   def index
     @occupied_count  = Locker.all_occupied.count

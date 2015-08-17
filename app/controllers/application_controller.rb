@@ -16,4 +16,10 @@ class ApplicationController < ActionController::Base
     { :device_id => @device_id }.merge(super)
   end
 
+  def admin_basic_auth
+    return if Rails.env.development?
+    authenticate_or_request_with_http_basic('Enter your admin information') do |username, password|
+      username == ENV['DEUCES_UN'] && password == ENV['DEUCES_PASSWORD']
+    end
+  end
 end
