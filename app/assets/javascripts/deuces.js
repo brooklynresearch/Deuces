@@ -14,6 +14,9 @@ deuces = {
       counter = setInterval(function () {
         oldCount = $('.idle-watch').data('count')
         $('.idle-watch').data('count', oldCount - 1)
+
+        $(".form-errors").text($('.idle-watch').data('count'))
+
         if($('.idle-watch').data('count') <= 0){
           window.location.replace($('.idle-watch').data('destination'))
         }
