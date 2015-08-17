@@ -11,7 +11,6 @@ deuces = {
       idleWait = 30000;
 
       $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend click', function () {
-          $(".form-errors").text(new Date().getTime())
           clearTimeout(idleTimer);
           idleTimer = setTimeout(function () {
             window.location.replace($('#idle-watch').data('destination'))}, idleWait);
