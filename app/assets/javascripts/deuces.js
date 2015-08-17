@@ -7,15 +7,11 @@ deuces = {
 
   idleWatch: function(){
     if (typeof counter != "undefined") {
-      console.log('clearing via new')
       clearInterval(counter)
     }
 
     if($('.idle-watch').length > 0){
       counter = setInterval(function () {
-        console.log('counting down...')
-        $(".form-errors").text($('.idle-watch').data('count'))
-
         oldCount = $('.idle-watch').data('count')
         $('.idle-watch').data('count', oldCount - 1)
         if($('.idle-watch').data('count') <= 0){
