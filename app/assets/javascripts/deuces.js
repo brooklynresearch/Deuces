@@ -6,9 +6,18 @@ deuces = {
 
 
   idleWatch: function(){
-    if($('#idle-watch').length > 0){
-      idleTimer = null;
-      idleWait = 30000;
+    if (typeof counter != "undefined") {
+      clearInterval(counter)
+    }
+
+    if($('.idle-watch').length > 0){
+      counter = setInterval(function () {
+        oldCount = $('.idle-watch').data('count')
+        $('.idle-watch').data('count', oldCount - 1)
+        if($('.idle-watch').data('count') <= 0){
+          window.location.replace($('.idle-watch').data('destination'))
+        }
+      }, 1000);
 
       $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend click', function () {
           clearTimeout(idleTimer);
