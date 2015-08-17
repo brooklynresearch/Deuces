@@ -18,7 +18,7 @@
       <%= f.hidden_field :creation_device_id, value: @device_id %>
       <%= f.hidden_field :large, value: @tablet %>
       <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2" %>
-      <%= f.text_field :phone_number, placeholder: "PHONE NUMBER", class: "text-input line-3",
+      <%= f.text_field :phone_number, placeholder: "LAST 4 DIGITS OF PHONE #", class: "text-input line-3",
           type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*" %>
       <div class="text-input line-4 checkbox-container">
         <%= f.check_box :terms, id: "terms" %>
