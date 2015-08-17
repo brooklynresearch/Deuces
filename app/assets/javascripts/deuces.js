@@ -11,7 +11,7 @@ deuces = {
       idleState = false;
       idleWait = 30000;
 
-      $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend', function () {
+      $('*').bind('mousemove mousedown mousewheel wheel DOMMouseScroll MSPointerDown MSPointerMove keypress keydown keyup touchstart touchmove touchend click', function () {
           clearTimeout(idleTimer);
           idleState = false;
           idleTimer = setTimeout(function () {
