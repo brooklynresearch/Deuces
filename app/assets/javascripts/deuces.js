@@ -34,6 +34,12 @@ deuces = {
           $('.hidden-submit').attr('disabled', true)
         }
       });
+
+      $(".validate-form *").live("keyup", function(evt) {
+        if (evt.keyCode === 13) {
+          alert('go button clicked')
+        }
+      });
     }
   },
 
