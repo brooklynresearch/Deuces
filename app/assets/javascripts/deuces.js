@@ -7,7 +7,6 @@ deuces = {
 
   idleWatch: function(){
     if($('#idle-watch').length > 0){
-      alert('ggg')
       idleTimer = null;
       idleState = false;
       idleWait = 30000;
