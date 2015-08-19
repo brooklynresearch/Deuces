@@ -4,6 +4,7 @@
   <h1 class="admin-title">PowerUp Admin View</h1>
   <h3><%= pluralize(@occupied_count, 'locker') %> occupied</h3>
   <h3><%= pluralize(@open_count, 'locker') %> open</h3>
+  <p id="admin-index-error"><%= flash[:notice] if flash[:notice] %></p>
   <%= link_to "RENTAL SEARCH", search_admin_rentals_path, class: "admin-button admin-nav-button" %>
 </div>
 
@@ -32,6 +33,8 @@
           <%= link_to "Retrieve Device", admin_rental_path(locker.current_rental), class: "admin-button" %>
         <% end %>
         <%= link_to "History", admin_locker_path(locker), class: "admin-button" %>
+        <%= button_to "Clear Locker", clear_admin_locker_path(locker), class: "admin-button",
+            data: {confirm: "This will force the locker to 'unoccupied', open the locker, and end the current rental (if present)"} %>
       </div>
     </div>
   <% end %>

@@ -1,12 +1,11 @@
-# bad test url # @url = URI("http://www.mocky.io/v2/55c39e1a7c7d7b0a1468cacd")
+# test good url # @url = URI("http://www.mocky.io/v2/55c39e1a7c7d7b0a1468cacd")
 # test bad url # @url = URI("http://www.mocky.io/v2/55c39e487c7d7b111468cace")
 require 'net/http'
 
 class LockerRoomClient
 
-  def initialize(rental, device_id)
-    @rental    = rental
-    @locker    = rental.locker
+  def initialize(locker, device_id)
+    @locker    = locker
     @url       = URI('http://localhost:5000/messages')
     @device_id = device_id
   end
