@@ -8,6 +8,7 @@ $lime-green: #77BC1F;
 $orange: #DF7D1C;
 $blue: #00456E;
 $gray: #707B7B;
+$yellow: #FFDA00;
 
 @function deuces-units($units) {
   @return ($units/11) * 100vw;
