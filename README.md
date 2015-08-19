@@ -28,3 +28,14 @@ It postgresql server stops running, this should restart:
 ```
 rm /usr/local/var/postgres/postmaster.pid
 ```
+
+
+### drop and recreate database
+
+```
+kill `cat tmp/pids/server.pid`
+rake db:drop RAILS_ENV="production"
+rake db:create RAILS_ENV="production"
+rake db:migrate RAILS_ENV="production"
+rake db:seed RAILS_ENV="production"
+```
