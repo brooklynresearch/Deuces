@@ -21,6 +21,10 @@ class Admin::RentalsController < ApplicationController
   def search
   end
 
+  def confirm
+    @rental = Rental.find(params[:id])
+  end
+
   def find
     @rental = Rental.find_current(params["last_name"], params["phone_number"])
 
