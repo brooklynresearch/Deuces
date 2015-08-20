@@ -176,3 +176,12 @@ input, textarea {
     &.current {border-bottom: none;}
   }
 }
+
+#admin-index-error{
+  width: 80%; margin: 0 auto; padding: 10px;
+
+  &.zero     { background-color: $lime-green;}
+  &.one     { background-color: $orange;}
+  &.two     { background-color: $yellow;}
+
+}
