@@ -1,4 +1,5 @@
 #!/bin/sh
+now=$(date +"%T")
 if [ $(netstat -an | grep 3000 | grep LISTEN | wc -l) -eq 0 ]
 then
   cd ~/Documents/Deuces/
@@ -10,8 +11,8 @@ then
     echo $i;
     sleep 1s
   done
-  echo 'bout to start rs'
+  echo "Starting Rails Server @ $now"
   rails server -b 0.0.0.0 -e production -d
 else
-  echo 'its running already'
+  echo "Rails Server already running @ $now"
 fi
