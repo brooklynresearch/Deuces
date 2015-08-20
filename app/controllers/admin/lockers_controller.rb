@@ -27,7 +27,7 @@ class Admin::LockersController < ApplicationController
         flash[:notice] = "Locker #{@locker.coordinates} was cleared, but we couldn't connect to the locker to open it. Please try again."
       end
     else
-      flash[:notice] = "Sorry, we couldn't clear the locker, please try again".
+      flash[:notice] = "Sorry, we couldn't clear the locker, please try again"
     end
     redirect_to admin_lockers_path
   end
