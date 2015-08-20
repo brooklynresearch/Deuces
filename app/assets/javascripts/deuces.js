@@ -59,6 +59,11 @@ deuces = {
     $('.submit-label').click(function(){
       if (!deuces.formFilled()){
         $(".form-errors").text('Please fill out all fields')
+        return false
+      }
+      else if(!deuces.isFourDigitNumber($('.phone-input').val())){
+        $(".form-errors").text('Please provide the last 4 digits of your phone number')
+        return false
       }
     })
   },
@@ -76,6 +81,9 @@ deuces = {
     else{
       return true
     }
-  }
+  },
 
+  isFourDigitNumber: function(string){
+    return /^\d+$/.test(string) && string.length == 4
+  }
 }
