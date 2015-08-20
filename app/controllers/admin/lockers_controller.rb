@@ -22,12 +22,12 @@ class Admin::LockersController < ApplicationController
     if @locker.save
       lrc_response = LockerRoomClient.new(@locker, params[:device_id]).ping_retrieval
       if lrc_response
-        flash[:notice] = "Locker #{@locker.coordinates} has been cleared"
+        flash[:notice] = "Locker #{@locker.coordinates} has been cleared."
       else
-        flash[:notice] = "Sorry! Locker #{@locker.coordinates} was cleared, but we can't connect to the Lockers. Please try again"
+        flash[:notice] = "Locker #{@locker.coordinates} was cleared, but we couldn't connect to the locker to open it. Please try again."
       end
     else
-      flash[:notice] = "Sorry, we couldn't clear the locker, please try again"
+      flash[:notice] = "Sorry, we couldn't clear the locker, please try again".
     end
     redirect_to admin_lockers_path
   end

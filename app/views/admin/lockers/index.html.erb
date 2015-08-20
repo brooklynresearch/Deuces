@@ -4,7 +4,9 @@
   <h1 class="admin-title">PowerUp Admin View</h1>
   <h3><%= pluralize(@occupied_count, 'locker') %> occupied</h3>
   <h3><%= pluralize(@open_count, 'locker') %> open</h3>
-  <p id="admin-index-error" class="<%= device_id_class %>"><%= flash[:notice] if flash[:notice] %></p>
+  <% if flash[:notice] %>
+    <p id="admin-index-error" class="<%= device_id_class %>"><%= flash[:notice] %></p>
+  <% end %>
   <%= link_to "RENTAL SEARCH", search_admin_rentals_path, class: "admin-button admin-nav-button" %>
 </div>
 
