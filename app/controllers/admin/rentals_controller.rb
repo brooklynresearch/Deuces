@@ -10,7 +10,7 @@ class Admin::RentalsController < ApplicationController
     @rental.complete!
     lrc_response = LockerRoomClient.new(@rental.locker, params[:device_id]).ping_retrieval
     if lrc_response
-      redirect_to rental_path(@rental)
+      redirect_to confirm_admin_rental_path(@rental)
     else
       @rental.reverse_completion!
       flash[:notice] = "There was an issue connecting with the locker.  Please Try again or ask a representative"

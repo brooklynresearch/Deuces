@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :rentals, only: [:show] do
         member do
           post 'retrieve'
+          get 'confirm'
         end
         collection do
           get 'search'

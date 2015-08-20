@@ -1,0 +1,21 @@
+<div class="idle-watch" data-count="30" data-destination="<%= admin_lockers_url %>"></div>
+
+<%= image_tag "power_up.png", class: "logo smallest" %>
+
+
+<div id="inner-container">
+  <% if @rental.current %>
+    <div class="text-box <%= device_id_class %>">
+      <p>PLEASE PLACE DEVICE IN<br>LOCKER <%= @rental.locker.coordinates %></p>
+    </div>
+  <% else %>
+    <div class="text-box <%= device_id_class %> long">
+      <p>PLEASE PICK UP DEVICE FROM<br>LOCKER <%= @rental.locker.coordinates %></p>
+    </div>
+  <% end %>
+</div>
+
+<div id="button-container">
+  <%= link_to "COMPLETE", admin_lockers_url, class: "btn large center" %>
+  <%= image_tag "chase.png", class: "chase-logo"  %>
+</div>

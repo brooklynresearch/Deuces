@@ -20,7 +20,7 @@ RSpec.describe Admin::RentalsController do
       rental.reload
       locker.reload
 
-      expect(response).to redirect_to rental_path(rental)
+      expect(response).to redirect_to confirm_admin_rental_path(rental)
       expect(rental.current).to eq false
       expect(locker.occupied).to eq false
     end
