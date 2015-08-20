@@ -19,7 +19,8 @@
       <%= f.hidden_field :large, value: @tablet %>
       <%= f.text_field :last_name, placeholder: "LAST NAME", class: "text-input line-2 name-input" %>
       <%= f.text_field :phone_number, placeholder: "LAST 4 DIGITS OF PHONE #", class: "text-input line-3 phone-input",
-          type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*" %>
+          type:"number", min: "0", inputmode:"numeric", pattern:"[0-9]*",
+          onkeypress: "return event.charCode >= 48 && event.charCode <= 57" %>
       <div class="text-input line-4 checkbox-container">
         <%= f.check_box :terms, id: "terms", class: "terms-input" %>
         <label for="terms"></label>

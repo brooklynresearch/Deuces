@@ -61,6 +61,9 @@ deuces = {
         $(".form-errors").text('Please fill out all fields')
         return false
       }
+      else if(!deuces.isNumber($('.phone-input').val())){
+        $(".form-errors").text('Please use only digits for the 4 digits of your phone number')
+      }
       else if(!deuces.isFourDigitNumber($('.phone-input').val())){
         $(".form-errors").text('Please provide the last 4 digits of your phone number')
         return false
@@ -81,6 +84,10 @@ deuces = {
     else{
       return true
     }
+  },
+
+  isNumber: function(string){
+    return /^\d+$/.test(string)
   },
 
   isFourDigitNumber: function(string){
