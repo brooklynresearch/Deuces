@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
 
     namespace :admin do
-      resources :lockers, only: [:index, :show]
+      resources :lockers, only: [:index, :show] do
+        member do
+          post 'clear'
+        end
+      end
       resources :rentals, only: [:show] do
         member do
           post 'retrieve'
