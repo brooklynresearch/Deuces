@@ -37,6 +37,10 @@
         <%= link_to "History", admin_locker_path(locker), class: "admin-button" %>
         <%= button_to "Clear Locker", clear_admin_locker_path(locker), class: "admin-button",
             data: {confirm: "This will force the locker to 'unoccupied', open the locker, and end the current rental (if present)"} %>
+        <% unless locker.current_rental.present? %>
+          <%= button_to "Disable", disable_admin_locker_path(locker), class: "admin-button",
+              data: {confirm: "This will create a dummy rental for the locker so it can be temporarily disabled"} %>
+        <% end %>
       </div>
     </div>
   <% end %>

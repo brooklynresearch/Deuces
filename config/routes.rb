@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :lockers, only: [:index, :show] do
         member do
           post 'clear'
+          post 'disable'
         end
       end
       resources :rentals, only: [:show] do

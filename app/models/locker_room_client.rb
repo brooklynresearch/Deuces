@@ -27,6 +27,13 @@ class LockerRoomClient
     make_request(params)
   end
 
+  def ping_disabled
+    params = {row: @locker.row,
+              col: @locker.column,
+              device_id: 5,
+              state: 1 }
+    make_request(params)
+  end
 private
 
   def make_request(params)

@@ -122,7 +122,7 @@ RSpec.describe Rental, type: :model do
       assert !rental_2.valid?
     end
 
-    it "CAN store a phone with the same number as a old rental" do
+    it "CAN store a phone with the same name & number as a old rental" do
       locker_1 = Locker.create
       rental_1 = Rental.create(last_name: "Glass", locker_id: locker_1.id, phone_number: "1234", terms: true)
 
@@ -131,6 +131,16 @@ RSpec.describe Rental, type: :model do
       assert !rental_2.valid?
 
       rental_1.complete!
+      assert rental_2.valid?
+    end
+
+    it "CAN store a phone with the same name & number as a old rental IF name == 'DISABLED_LOCKER' " do
+      locker_1 = Locker.create
+      rental_1 = Rental.create(last_name: "DISABLED_LOCKER", locker_id: locker_1.id, phone_number: "1234", terms: true)
+
+      locker_2 = Locker.create
+      rental_2 = Rental.create(last_name: "DISABLED_LOCKER", locker_id: locker_2.id, phone_number: "1234", terms: true)
+      assert rental_1.valid?
       assert rental_2.valid?
     end
 
