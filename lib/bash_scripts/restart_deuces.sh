@@ -1,6 +1,22 @@
 #!/usr/bin/bash
 # A script to kill and restart the rails server
 
+now=$(date +"%T")
+
+if [ $(pg_isready | grep 'no response'| wc -l) -eq 0 ]
+then
+  echo "postgresql server is running @ $now"
+else
+  echo "going to restart postgres server in"
+  for i in {3..1};
+  do
+    echo $i;
+    sleep 1s
+  done
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+fi
+
+
 cd ~/Documents/Deuces/
 echo 'killing current server'
 kill `cat tmp/pids/server.pid`
