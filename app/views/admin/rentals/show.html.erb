@@ -14,7 +14,7 @@
 
 <div id="button-container">
   <% if params["search"] %>
-    <%= link_to "BACK", search_admin_rentals_path, class: "btn left small" %>
+    <%= link_to "BACK", search_admin_rentals_path(last_name: @last_name, phone_number: @phone_number), class: "btn left small" %>
   <% else %>
     <%= link_to "BACK", admin_lockers_path, class: "btn left small" %>
   <% end %>

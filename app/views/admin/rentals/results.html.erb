@@ -3,7 +3,7 @@
 <div id="admin-top">
   <h1 class="admin-title">Search Results</h1>
   <h3><%= @rentals.count %> rentals found</h3>
-  <h3>Last Name: <%= @last_name %></h3>
+  <h3>Last Name: <%= @last_name.upcase %></h3>
   <h3>Phone: <%= @phone_number %></h3>
   <% if flash[:notice] %>
     <p id="admin-index-error" class="<%= device_id_class %>"><%= flash[:notice] %></p>
@@ -29,7 +29,7 @@
         <span class="rental-data"><span class="title">Created on iPad:</span> <%= rental.creation_device_id %></span>
       </div>
       <div class="admin-locker-links">
-        <%= link_to "SELECT", admin_rental_path(rental, search: "t"), class: "admin-button" %>
+        <%= link_to "SELECT", admin_rental_path(rental, search: "t", last_name: @last_name, phone_number: @phone_number), class: "admin-button" %>
       </div>
     </div>
   <% end %>
