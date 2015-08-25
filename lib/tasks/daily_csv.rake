@@ -3,6 +3,8 @@ namespace :daily_csv do
   task run: :environment do
     report_generator = ReportGenerator.new
     report_generator.write_csv
+    sleep 5
+    report_generator.mail_csv
   end
 
 

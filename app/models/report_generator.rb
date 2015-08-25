@@ -4,6 +4,7 @@ class ReportGenerator
   def initialize
     @start_time = Date.yesterday.beginning_of_day
     @end_time   = Date.yesterday.end_of_day
+    @text_date  = Date.yesterday.strftime("%A %b %d")
     @file_name  = Date.yesterday.strftime("power_up_%m_%d_%Y.csv")
     @data = data
   end
@@ -14,6 +15,11 @@ class ReportGenerator
       csv << data.values
     end
   end
+
+  def mail_csv
+    ReportMailer.report_email(@text_date, @file_name).deliver_now
+  end
+  private
 
   def data
     daily_rentals = Rental.where(created_at: @start_time..@end_time)
@@ -26,12 +32,13 @@ class ReportGenerator
       average_length: calculate_length(daily_rentals.completed)}
   end
 
-
-private
-
   def calculate_length(rentals)
-    lengths = rentals.map(&:rental_length)
-    lengths.sum / lengths.size
+    if rentals.length > 0
+      lengths = rentals.map(&:rental_length)
+      lengths.sum / lengths.size
+    else
+      0
+    end
   end
 
 end
