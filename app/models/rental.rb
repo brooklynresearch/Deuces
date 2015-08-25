@@ -10,8 +10,22 @@ class Rental < ActiveRecord::Base
   after_create :set_locker_occupied
   after_create :assign_hashed_id
 
+  scope :current, -> { where(current: true)}
+
   def self.find_current(last_name,phone_number)
     where(last_name:last_name.upcase, phone_number: phone_number, current: true).first
+  end
+
+  def self.find_all_current(last_name,phone_number)
+    if last_name.present? && phone_number.present?
+      where(last_name:last_name.upcase, phone_number: phone_number, current: true)
+    elsif last_name.present?
+      where(last_name:last_name.upcase, current: true)
+    elsif phone_number.present?
+      where(phone_number: phone_number, current: true)
+    else
+      []
+    end
   end
 
   def set_locker_occupied

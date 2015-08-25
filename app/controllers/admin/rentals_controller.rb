@@ -19,6 +19,8 @@ class Admin::RentalsController < ApplicationController
   end
 
   def search
+    @last_name = params["last_name"] || ""
+    @phone_number = params["phone_number"] || ""
   end
 
   def confirm
@@ -26,13 +28,25 @@ class Admin::RentalsController < ApplicationController
   end
 
   def find
-    @rental = Rental.find_current(params["last_name"], params["phone_number"])
+    unless params["last_name"].present? || params["phone_number"].present?
+        flash[:notice] = "Please Provide a last name or phone number to search"
+        redirect_to search_admin_rentals_path
+    end
+    @rentals = Rental.find_all_current(params["last_name"], params["phone_number"])
 
-    if @rental
-      redirect_to admin_rental_path(@rental)
+    if @rentals.length == 1
+      redirect_to admin_rental_path(@rentals.first, search: "t")
+    elsif @rentals.length > 1
+      redirect_to results_admin_rentals_path(rental_ids: @rentals.map(&:id), last_name: params["last_name"], phone_number: params["phone_number"] )
     else
       flash[:notice] = "Sorry, we couldn't find a current rental with that information.  Please try again."
       redirect_to search_admin_rentals_path
     end
+  end
+
+  def results
+    @last_name = params["last_name"].upcase
+    @phone_number = params["phone_number"]
+    @rentals = Rental.find(params["rental_ids"])
   end
 end

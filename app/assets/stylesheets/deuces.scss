@@ -137,7 +137,10 @@ input, textarea {
   top: 0; padding: 30px 5% 0 5%;
 
   .admin-title      { margin: 0 0 20px 0;}
-  .admin-nav-button { position: absolute; top: 30px; right: 5%;}
+  .admin-nav-button {
+    position: absolute; top: 30px; right: 5%;
+    &.left {right: 25%;}
+  }
 }
 #admin-container{
   margin-top: 200px; width: 90%;  padding: 40px 5%;

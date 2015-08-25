@@ -13,7 +13,11 @@
 </div>
 
 <div id="button-container">
-  <%= link_to "ADMIN", admin_lockers_path, class: "btn left small" %>
+  <% if params["search"] %>
+    <%= link_to "BACK", search_admin_rentals_path, class: "btn left small" %>
+  <% else %>
+    <%= link_to "BACK", admin_lockers_path, class: "btn left small" %>
+  <% end %>
   <%= button_to "UNLOCK", retrieve_admin_rental_path(@rental), class: "btn center large green" %>
   <%= image_tag "chase.png", class: "chase-logo"  %>
 </div>

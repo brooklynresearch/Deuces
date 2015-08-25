@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         end
         collection do
           get 'search'
+          get 'results'
           post 'find'
         end
       end
