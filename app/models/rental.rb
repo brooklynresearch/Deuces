@@ -11,6 +11,7 @@ class Rental < ActiveRecord::Base
   after_create :assign_hashed_id
 
   scope :current, -> { where(current: true)}
+  scope :completed, -> { where(current: false)}
 
   def self.find_current(last_name,phone_number)
     where(last_name:last_name.upcase, phone_number: phone_number, current: true).first
@@ -51,6 +52,9 @@ class Rental < ActiveRecord::Base
     write_attribute(:last_name, s.to_s.upcase)
   end
 
+  def rental_length
+    end_time - created_at
+  end
 private
 
 
