@@ -1,10 +1,8 @@
 #!/bin/sh
 now=$(date +"%T")
 
-if [ $(pg_isready | grep 'no response'| wc -l) -eq 0 ]
+if [ $(pg_isready | grep 'accepting connections'| wc -l) -eq 0 ]
 then
-  echo "postgresql server is running @ $now"
-else
   echo "going to restart postgres server in"
   for i in {3..1};
   do
@@ -12,6 +10,8 @@ else
     sleep 1s
   done
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+else
+  echo "postgresql server is running @ $now"
 fi
 
 
