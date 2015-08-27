@@ -35,10 +35,21 @@ class ReportGenerator
   def calculate_length(rentals)
     if rentals.length > 0
       lengths = rentals.map(&:rental_length)
-      lengths.sum / lengths.size
+      seconds = lengths.sum / lengths.size
+      humanize_seconds(seconds)
     else
-      0
+      "0"
     end
+
   end
 
+
+  def humanize_seconds(secs)
+    [[60, :seconds], [60, :minutes], [24, :hours], [1000, :days]].map{ |count, name|
+      if secs > 0
+        secs, n = secs.divmod(count)
+        "#{n.to_i} #{name}(s)"
+      end
+    }.compact.reverse.join(' ')
+  end
 end
