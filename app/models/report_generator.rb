@@ -2,10 +2,10 @@ class ReportGenerator
   require 'csv'
 
   def initialize
-    @start_time = Date.yesterday.beginning_of_day
-    @end_time   = Date.yesterday.end_of_day
-    @text_date  = Date.yesterday.strftime("%A %b %d")
-    @file_name  = Date.yesterday.strftime("power_up_%m_%d_%Y.csv")
+    @start_time = DateTime.now.beginning_of_day - 1.days
+    @end_time   = DateTime.now.beginning_of_day
+    @text_date  = @start_time.strftime("%A %b %d")
+    @file_name  = @start_time.strftime("power_up_%m_%d_%Y.csv")
     @data = data
   end
 
