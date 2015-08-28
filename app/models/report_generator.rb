@@ -22,14 +22,14 @@ class ReportGenerator
   private
 
   def data
-    daily_rentals = Rental.where(created_at: @start_time..@end_time)
+    daily_rentals = Rental.where(created_at: @start_time..@end_time).not_disabled
 
-    { total_rentals: daily_rentals.count, # Total # of rentals for the day
-      unique_rentals: daily_rentals.select(:last_name, :phone_number).distinct.length, # Unique # of rentals for the day
-      tablet_rentals: daily_rentals.includes(:locker).where(lockers: {large: true}).count,
-      phone_rentals: daily_rentals.includes(:locker).where(lockers: {large: false}).count,
-      unclaimed_eod: daily_rentals.not_disabled.current.count,
-      average_length: calculate_length(daily_rentals.completed)}
+    { "total rentals": daily_rentals.count, # Total # of rentals for the day
+      "unique rentals": daily_rentals.select(:last_name, :phone_number).distinct.length, # Unique # of rentals for the day
+      "tablet rentals": daily_rentals.includes(:locker).where(lockers: {large: true}).count,
+      "phone rentals": daily_rentals.includes(:locker).where(lockers: {large: false}).count,
+      "unclaimed end of day": daily_rentals.not_disabled.current.count,
+      "average length": calculate_length(daily_rentals.completed)}
   end
 
   def calculate_length(rentals)
@@ -45,10 +45,10 @@ class ReportGenerator
 
 
   def humanize_seconds(secs)
-    [[60, :seconds], [60, :minutes], [24, :hours], [1000, :days]].map{ |count, name|
+    [[60, :s], [60, :m], [24, :h], [1000, :d]].map{ |count, name|
       if secs > 0
         secs, n = secs.divmod(count)
-        "#{n.to_i} #{name}(s)"
+        "#{n.to_i}#{name}"
       end
     }.compact.reverse.join(' ')
   end
