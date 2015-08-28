@@ -28,7 +28,7 @@ class ReportGenerator
       unique_rentals: daily_rentals.select(:last_name, :phone_number).distinct.length, # Unique # of rentals for the day
       tablet_rentals: daily_rentals.includes(:locker).where(lockers: {large: true}).count,
       phone_rentals: daily_rentals.includes(:locker).where(lockers: {large: false}).count,
-      unclaimed_eod: daily_rentals.current.count,
+      unclaimed_eod: daily_rentals.not_disabled.current.count,
       average_length: calculate_length(daily_rentals.completed)}
   end
 

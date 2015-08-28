@@ -12,6 +12,7 @@ class Rental < ActiveRecord::Base
 
   scope :current, -> { where(current: true)}
   scope :completed, -> { where(current: false)}
+  scope :not_disabled, -> { where.not(last_name: "DISABLED_LOCKER")}
 
   def self.find_current(last_name,phone_number)
     where(last_name:last_name.upcase, phone_number: phone_number, current: true).first
