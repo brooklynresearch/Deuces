@@ -1,6 +1,6 @@
 class ReportMailer < ApplicationMailer
 
-  RECIPIENTS = ["andrewglass1@gmail.com", "johnny@brooklynresearch.org", "ezer@brooklynresearch.org", "alex@brooklynresearch.org"]
+  RECIPIENTS = ["andrewglass1@gmail.com", "johnny@brooklynresearch.org", "ezer@brooklynresearch.org", "alex@brooklynresearch.org", "gmarkant@thisismkg.com", "irodriguez@thisismkg.com"]
 
   def report_email(date, file_name)
     @date = date
